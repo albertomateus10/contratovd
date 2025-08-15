@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Contrato de Compra e Venda - Fiat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 30px;
+            background: #fafafa;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        input, select, textarea {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Adicionado para criar um espaço maior, equivalente a um TAB */
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .radio-item:hover {
+            border-color: #3498db;
+        }
+
+        .radio-item input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 40px auto 0;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.4);
+        }
+
+        .generate-btn:active {
+            transform: translateY(-1px);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gerador de Contrato</h1>
+            <p>Contrato de Compra e Venda por Faturamento Direto de Fábrica - Fiat</p>
+        </div>
+
+        <div class="form-container">
+            <form id="contratoForm">
+                <!-- Dados Básicos -->
+                <div class="section">
+                    <h2 class="section-title">Dados Básicos</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="data">Data <span class="required">*</span></label>
+                            <input type="date" id="data" name="data" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vendedor">Vendedor <span class="required">*</span></label>
+                            <input type="text" id="vendedor" name="vendedor" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modalidade do Cliente -->
+                <div class="section">
+                    <h2 class="section-title">Modalidade do Cliente</h2>
+                    <div class="form-group">
+                        <label>Tipo de Cliente <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="pj" name="modalidade" value="Pessoa Jurídica" required>
+                                <label for="pj">Pessoa Jurídica</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="taxista" name="modalidade" value="Taxista" required>
+                                <label for="taxista">Taxista</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="produtor" name="modalidade" value="Produtor Rural" required>
+                                <label for="produtor">Produtor Rural</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="pcd" name="modalidade" value="PCD" required>
+                                <label for="pcd">PCD</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="pf" name="modalidade" value="Pessoa Física" required>
+                                <label for="pf">Pessoa Física</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Possui Isenção de:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="icms" name="isencoes" value="ICMS">
+                                <label for="icms">ICMS</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="ipi" name="isencoes" value="IPI">
+                                <label for="ipi">IPI</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alvara" name="isencoes" value="Alvará">
+                                <label for="alvara">Alvará</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dados do Veículo -->
+                <div class="section">
+                    <h2 class="section-title">Dados do Veículo</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="quantidade">Quantidade <span class="required">*</span></label>
+                            <input type="number" id="quantidade" name="quantidade" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modelo">Modelo <span class="required">*</span></label>
+                            <input type="text" id="modelo" name="modelo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="desconto">Desconto</label>
+                            <input type="text" id="desconto" name="desconto">
+                        </div>
+                        <div class="form-group">
+                            <label for="portas">Portas</label>
+                            <select id="portas" name="portas">
+                                <option value="">Selecione</option>
+                                <option value="2">2 Portas</option>
+                                <option value="4">4 Portas</option>
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cor">Código/Descrição da Cor</label>
+                            <input type="text" id="cor" name="cor">
+                        </div>
+                        <div class="form-group">
+                            <label for="opcionais">Código/Descrição dos Opcionais</label>
+                            <input type="text" id="opcionais" name="opcionais">
+                        </div>
+                        <div class="form-group">
+                            <label for="valorUnitario">Valor Unitário do Veículo <span class="required">*</span></label>
+                            <input type="text" id="valorUnitario" name="valorUnitario" placeholder="R$ 0,00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="valorTotal">Valor Total do Contrato <span class="required">*</span></label>
+                            <input type="text" id="valorTotal" name="valorTotal" placeholder="R$ 0,00" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dados do Comprador -->
+                <div class="section">
+                    <h2 class="section-title">Dados do Comprador</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="nomeRazao">Nome / Razão Social <span class="required">*</span></label>
+                            <input type="text" id="nomeRazao" name="nomeRazao" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endereco">Endereço <span class="required">*</span></label>
+                            <input type="text" id="endereco" name="endereco" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bairro">Bairro <span class="required">*</span></label>
+                            <input type="text" id="bairro" name="bairro" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cidade">Cidade <span class="required">*</span></label>
+                            <input type="text" id="cidade" name="cidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cep">CEP <span class="required">*</span></label>
+                            <input type="text" id="cep" name="cep" pattern="\d{5}-?\d{3}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado <span class="required">*</span></label>
+                            <select id="estado" name="estado" required>
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpfCnpj">CPF / CNPJ <span class="required">*</span></label>
+                            <input type="text" id="cpfCnpj" name="cpfCnpj" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inscricaoEstadual">Inscrição Estadual</label>
+                            <input type="text" id="inscricaoEstadual" name="inscricaoEstadual">
+                        </div>
+                        <div class="form-group">
+                            <label for="rg">RG</label>
+                            <input type="text" id="rg" name="rg">
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoEmpresa">Contato na Empresa</label>
+                            <input type="text" id="contatoEmpresa" name="contatoEmpresa">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone <span class="required">*</span></label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forma de Pagamento -->
+                <div class="section">
+                    <h2 class="section-title">Forma de Pagamento</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="depositoTransferencia">Depósito / Transferência bancária</label>
+                            <input type="text" id="depositoTransferencia" name="depositoTransferencia">
+                        </div>
+                        <div class="form-group">
+                            <label for="valorFinanciamento">Valor de Financiamento</label>
+                            <input type="text" id="valorFinanciamento" name="valorFinanciamento">
+                        </div>
+                        <div class="form-group">
+                            <label for="banco">Banco</label>
+                            <input type="text" id="banco" name="banco">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantidadeParcelas">Quantidade de parcelas</label>
+                            <input type="number" id="quantidadeParcelas" name="quantidadeParcelas">
+                        </div>
+                        <div class="form-group">
+                            <label for="valorParcelas">Valor das parcelas</label>
+                            <input type="text" id="valorParcelas" name="valorParcelas" placeholder="R$ 0,00">
+                        </div>
+                        <div class="form-group">
+                            <label for="veiculoUsado">Veículo usado</label>
+                            <input type="text" id="veiculoUsado" name="veiculoUsado">
+                        </div>
+                        <div class="form-group">
+                            <label for="placa">Placa</label>
+                            <input type="text" id="placa" name="placa">
+                        </div>
+                        <div class="form-group">
+                            <label for="valorUtilizado">Valor utilizado</label>
+                            <input type="text" id="valorUtilizado" name="valorUtilizado" placeholder="R$ 0,00">
+                        </div>
+                        <div class="form-group">
+                            <label for="quitacao">Quitação</label>
+                            <input type="text" id="quitacao" name="quitacao">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="outros">Outros</label>
+                            <input type="text" id="outros" name="outros">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="observacoes">Observações</label>
+                            <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pessoa Politicamente Exposta -->
+                <div class="section">
+                    <h2 class="section-title">Pessoa Politicamente Exposta (PPE)</h2>
+                    <div class="form-group">
+                        <label>É Pessoa Politicamente Exposta? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="ppeSim" name="ppe" value="Sim" required>
+                                <label for="ppeSim">Sim</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="ppeNao" name="ppe" value="Não" required>
+                                <label for="ppeNao">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="generate-btn">GERAR CONTRATO</button>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Gerando contrato PDF...</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Formatação de campos
+        document.getElementById('cpfCnpj').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                // CPF
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            } else {
+                // CNPJ
+                value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('cep').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+            e.target.value = value;
+        });
+
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 10) {
+                value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+            } else {
+                value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                value = value.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+            e.target.value = value;
+        });
+
+        // Formatação de valores monetários
+        function formatMoney(input) {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = (value / 100).toFixed(2) + '';
+                value = value.replace(".", ",");
+                value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                e.target.value = 'R$ ' + value;
+            });
+        }
+
+        formatMoney(document.getElementById('valorUnitario'));
+        formatMoney(document.getElementById('valorTotal'));
+        formatMoney(document.getElementById('valorParcelas'));
+        formatMoney(document.getElementById('valorUtilizado'));
+        formatMoney(document.getElementById('depositoTransferencia'));
+        formatMoney(document.getElementById('valorFinanciamento'));
+
+        // Submissão do formulário
+        document.getElementById('contratoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loadingDiv = document.getElementById('loading');
+            const submitBtn = document.querySelector('.generate-btn');
+            
+            loadingDiv.style.display = 'block';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'GERANDO...';
+            
+            // Simular delay para geração do PDF
+            setTimeout(() => {
+                generatePDF();
+                
+                loadingDiv.style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'GERAR CONTRATO';
+            }, 2000);
+        });
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Obter dados do formulário
+            const formData = new FormData(document.getElementById('contratoForm'));
+            const data = Object.fromEntries(formData.entries());
+            
+            // Obter isencoes marcadas
+            const isencoes = Array.from(document.querySelectorAll('input[name="isencoes"]:checked'))
+                .map(cb => cb.value).join(', ') || 'Nenhuma';
+            
+            // Configurar fonte
+            doc.setFont('helvetica');
+            
+            let y = 20;
+            const lineHeight = 6;
+            const pageHeight = doc.internal.pageSize.height;
+            const pageWidth = doc.internal.pageSize.width;
+            const margin = 20;
+            const maxWidth = pageWidth - 2 * margin;
+            
+            function addText(text, size = 10, style = 'normal', align = 'left') {
+                if (y > pageHeight - 30) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.setFontSize(size);
+                doc.setFont('helvetica', style);
+                
+                if (align === 'center') {
+                    doc.text(text, pageWidth / 2, y, { align: 'center' });
+                } else {
+                    // Quebrar texto longo em múltiplas linhas
+                    const lines = doc.splitTextToSize(text, maxWidth);
+                    doc.text(lines, margin, y);
+                    y += (lines.length - 1) * lineHeight;
+                }
+                y += lineHeight;
+            }
+            
+            function addSection(title) {
+                y += 5;
+                addText(title, 12, 'bold');
+                y += 3;
+            }
+            
+            function formatDate(dateStr) {
+                // Retorna a data no formato DD/MM/AAAA com zeros à esquerda
+                let date;
+                if (!dateStr) {
+                    date = new Date();
+                } else {
+                    date = new Date(dateStr + 'T00:00:00');
+                }
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+
+            function formatDateLong(dateStr) {
+                // Retorna a data no formato "DD de Mês de AAAA", usando nomes de meses em português
+                let date;
+                if (!dateStr) {
+                    date = new Date();
+                } else {
+                    date = new Date(dateStr + 'T00:00:00');
+                }
+                const day = String(date.getDate()).padStart(2, '0');
+                const months = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+                const monthName = months[date.getMonth()];
+                const year = date.getFullYear();
+                // Capitalizar o mês
+                const monthCap = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+                return `${day} de ${monthCap} de ${year}`;
+            }
+            
+            // Cabeçalho
+            addText('CONTRATO DE COMPRA E VENDA POR FATURAMENTO DIRETO DE FÁBRICA', 14, 'bold', 'center');
+            y += 5;
+            addText('À Fiat Automóveis S/A', 12, 'bold', 'center');
+            addText('Regional Porto Alegre – Vendas Diretas', 10, 'normal', 'center');
+            addText(`Data: ${formatDate(data.data)}`, 10);
+            y += 5;
+            
+            // Modalidade do Cliente
+            addSection('MODALIDADE DO CLIENTE:');
+            addText(`(${data.modalidade === 'Pessoa Jurídica' ? 'X' : ' '}) Pessoa Jurídica    (${data.modalidade === 'Taxista' ? 'X' : ' '}) Taxista    (${data.modalidade === 'Produtor Rural' ? 'X' : ' '}) Produtor Rural    (${data.modalidade === 'PCD' ? 'X' : ' '}) PCD    (${data.modalidade === 'Pessoa Física' ? 'X' : ' '}) P. FÍSICA`);
+            y += 3;
+            const icmsCheck = isencoes.includes('ICMS') ? 'X' : ' ';
+            const ipiCheck = isencoes.includes('IPI') ? 'X' : ' ';
+            const alvaraCheck = isencoes.includes('Alvará') ? 'X' : ' ';
+            addText(`POSSUI ISENÇÃO DE: ICMS (${icmsCheck}) Sim ( )Não    IPI (${ipiCheck}) Sim ( ) Não    Alvará (${alvaraCheck}) Sim ( ) Não`);
+            y += 5;
+            
+            addText('Em conformidade com as tratativas realizadas junto à Concessionária San Marino Veículos Ltda., encaminha-se o presente pedido de faturamento do(s) veículo(s) abaixo relacionados:');
+            y += 3;
+            addText(`Vendedor: ${data.vendedor || ''}                              Loja: SAN MARINO    Fone:(51) 30211133`);
+            addText('E-mail: vendas.novos@sanmarinofiat.com.br');
+            
+            // Dados do Veículo
+            addSection('I - Dados do Veículo');
+            addText(`Quantidade(s): ${data.quantidade || ''}            Modelo: ${data.modelo || ''}                                                    Desconto: ${data.desconto || ''}        Portas: ${data.portas || ''}`);
+            addText(`Cód./Descrição da Cor: ${data.cor || ''}`);
+            addText(`Cód./Descrição dos Opcionais: ${data.opcionais || ''}`);
+            addText('Concessionária de Entrega: SAN MARINO -');
+            addText(`Valor Unitário do Veículo: ${data.valorUnitario || ''}                    Valor Total do Contrato: ${data.valorTotal || ''}`);
+            
+            // Dados do Comprador
+            addSection('II - Dados do Comprador');
+            addText(`Nome / Razão Social: ${data.nomeRazao || ''}`);
+            addText(`Endereço: ${data.endereco || ''}                     Bairro: ${data.bairro || ''}            Cidade: ${data.cidade || ''}`);
+            addText(`CEP: ${data.cep || ''}        Estado: ${data.estado || ''}        E-mail: ${data.email || ''}`);
+            addText(`CPF / CNPJ: ${data.cpfCnpj || ''}        Inscrição Estadual: ${data.inscricaoEstadual || ''}`);
+            addText(`RG: ${data.rg || ''}        Contato na Empresa: ${data.contatoEmpresa || ''}`);
+            addText(`Telefone: ${data.telefone || ''}`);
+            
+            // Forma de Pagamento
+            addSection('III - Forma de Pagamento');
+            addText(`Depósito / Transferência bancária: ${data.depositoTransferencia || ''}`);
+            addText(`Valor de Financiamento: ${data.valorFinanciamento || ''}        Banco: ${data.banco || ''}        Quantidade de parcelas: ${data.quantidadeParcelas || ''}        Valor das parcelas: ${data.valorParcelas || ''}`);
+            addText(`Veículo usado: ${data.veiculoUsado || ''}        Placa: ${data.placa || ''}        Valor utilizado: ${data.valorUtilizado || ''}            Quitação: ${data.quitacao || ''}`);
+            addText(`Outros: ${data.outros || ''}`);
+            addText(`Observações: ${data.observacoes || ''}`);
+            y += 5;
+            
+            addText('É parte integrante deste contrato a ficha técnica do veículo contratado (Linha de Produtos Fiat), contendo os itens específicos que o compõe, ratificando os seus componentes básicos de série, os opcionais adquiridos bem como a sua cor, cujos itens deverão estar rubricados pelo comprador, indicando de forma irretratável as características do veículo.');
+            y += 5;
+            
+            // Informações Legais
+            addSection('Informações Legais em Cumprimento à Lei 13.111 de 25 de março de 2015');
+            addText('Declaro que previamente a aquisição do veículo supra referido, recebi clara e satisfatoriamente as informações sobre o valor dos tributos incidentes na comercialização do veículo e da situação de regularidade do mesmo, bem como sobre a inexistência de multas, taxas, débitos de impostos (inclusive a periodicidade de incidência) ou quaisquer fatos conhecidos que limitem ou impeçam a circulação do veículo. Igualmente me foi esclarecido sobre a não existência de registros conhecidos de furtos ou de registro de gravame (alienação fiduciária). Recebi o alerta que as informações fornecidas sobre a regularidade poderão ser obtidas e confirmadas nos sítios eletrônicos das autoridades policiais e fazendárias das unidades da Federação onde o veículo está registrado. A presente declaração tem como finalidade o cumprimento do quanto disposto na Lei 13.111/15 cujo texto tive ciência.');
+            y += 5;
+            
+            addSection('Informações legais em cumprimento à Lei 9.613, de 3 de março de 1998, e Resolução nº. 16 do COAF, DE 28 DE MARÇO DE 2007:');
+            const ppeStatus = data.ppe === 'Sim' ? 'SOU' : 'NÃO SOU';
+            addText(`Declaro que, na forma da Resolução nº. 16 do COAF, de 28 de março de 2007 ${ppeStatus} Pessoa Politicamente Exposta (PPE).`);
+            y += 10;
+            
+            /*
+             * Desenha as linhas de assinatura de maneira centralizada.
+             * Anteriormente eram utilizadas strings com sublinhados e espaços para simular
+             * as linhas de assinatura, o que deixava os elementos desalinhados.
+             * Agora calculamos a largura disponível na página e distribuímos as três
+             * assinaturas de forma equidistante, conforme o modelo enviado pelo cliente.
+             */
+            {
+                // Comprimento da linha de assinatura em milímetros. A4 possui ~210mm de largura
+                // e estamos considerando margens de 20mm em cada lado. Três linhas de 50mm
+                // ocupam 150mm, sobrando espaço para intervalos iguais entre elas.
+                const lineLength = 50;
+                const availableWidth = pageWidth - 2 * margin;
+                const totalLinesWidth = 3 * lineLength;
+                // Espaço horizontal entre as linhas
+                const lineSpacing = (availableWidth - totalLinesWidth) / 2;
+                // Posição vertical das linhas de assinatura
+                const signatureY = y + 5;
+                // Calcula as posições X de cada linha
+                const firstX = margin;
+                const secondX = firstX + lineLength + lineSpacing;
+                const thirdX = secondX + lineLength + lineSpacing;
+
+                // Desenha as três linhas
+                doc.setLineWidth(0.5);
+                doc.line(firstX, signatureY, firstX + lineLength, signatureY);
+                doc.line(secondX, signatureY, secondX + lineLength, signatureY);
+                doc.line(thirdX, signatureY, thirdX + lineLength, signatureY);
+
+                // Escreve os textos centralizados sob cada linha
+                doc.setFontSize(8);
+                doc.text('Assinatura do Cliente', firstX + lineLength / 2, signatureY + 5, { align: 'center' });
+                doc.text('Assinatura da Gestão', secondX + lineLength / 2, signatureY + 5, { align: 'center' });
+                doc.text('Assinatura do Vendedor', thirdX + lineLength / 2, signatureY + 5, { align: 'center' });
+
+                // Atualiza a coordenada vertical para continuar o PDF abaixo das assinaturas
+                y = signatureY + 15;
+            }
+            
+            // Nova página para condições gerais
+            doc.addPage();
+            y = 20;
+            
+            addText('CONDIÇÕES GERAIS DO CONTRATO DE FATURAMENTO DIRETO DE FÁBRICA', 14, 'bold', 'center');
+            y += 10;
+            
+            addText('Na melhor forma de direito, o Contratante declara a sua ciência e concordância com as seguintes cláusulas das Condições Gerais:');
+            y += 5;
+            
+            const clausulas = [
+                '1. A leitura das informações contidas neste instrumento é de inteira responsabilidade do comprador, que, ao assinar este documento, declara ter lido e entendido todas as suas cláusulas, não havendo dúvidas em relação ao seu conteúdo.',
+                
+                '2. Sendo o caso, ressalta-se, inicialmente, que as alíquotas tributárias diferenciadas foram praticadas, unicamente, pelo veículo adquirido se destinar ao ativo imobilizado da pessoa jurídica ou, ainda, pela incidência da legislação tributária vigente, conforme o enquadramento legal pertinente. Dessa forma, o veículo adquirido deve permanecer, por um prazo de até 12 meses, naquilo que prevê o decreto nº 57847 de 24/10/2024 (caso não haja outra previsão legal incidente), em nome do adquirente, sob pena de se consolidar: (a) uma conduta ilícita, por força de legislação específica; (b) o impedimento da realização de novos contratos nessa modalidade; (c) a sujeição do interessado as consequências civis e penais, eventualmente cabíveis.',
+                
+                '3. O prazo de entrega do veículo é de até 90 (noventa) dias, contados da assinatura deste contrato. Vencido o prazo, sem o faturamento do veículo, as partes podem realizar a sua prorrogação tácita ou o devido cancelamento, mas esse de forma incontroversa e por escrito, sem qualquer ônus ou reconhecimento de perdas e danos.',
+                
+                '4. Por circunstâncias imprevisíveis e alheias à esfera de controle da Concessionária, antes do seu faturamento, o preço do veículo poderá sofrer alterações, da parte do fabricante, sem prévio aviso. Dessa forma, o preço do contrato poderá sofrer alterações, na medida exata do novo preço, conforme a tabela de preços vigente no dia do faturamento. Destaca-se, ainda, que sobre o preço do veículo pode estar incidindo, temporariamente, alguma redução especial de determinada alíquota tributária. Desta forma, por ser uma política fiscal do Governo, quando do faturamento do veículo, essa tributação especial poderá estar revogada ou reajustada, ficando o Contratante, desde já, ciente e obrigado com o pagamento do novo preço que não contemple o referido benefício fiscal.',
+                
+                '5. O Contratante declara estar ciente e concordar que o veículo poderá sofrer, por deliberação exclusiva da Fiat, alterações em suas características, considerando as atualizações implementadas nas versões de cada modelo (itens de série e conjunto de opcionais), quando de seu faturamento ou produção, sem prévio aviso. Ademais, tais alterações poderão influenciar no preço final do veículo, ficando o Contratante, desde já, totalmente ciente e de acordo com as eventuais alterações.',
+                
+                '6. O desconto concedido advém da quantidade, categoria e características do veículo adquirido, só podendo ser aplicado nessas exatas condições. Caso o faturamento ocorra em uma quantidade menor ou com características distintas do requerido, por solicitação do Contratante, poderá haver uma redução no percentual do desconto, adequando o contrato aos valores praticados em tal condição. Dessa forma, o Contratante declara a sua total ciência e concordância com a eventual alteração no desconto e respectivo valor final.',
+                
+                '7. O faturamento do veículo encomendado está sujeito a análise e recusa pela Fiat. A aprovação dependerá de um parecer do seu departamento financeiro, em conformidade com a regulamentação vigente no contrato de intermediação de vendas diretas entre a Fiat e esta concessionária, além da disponibilidade ou continuidade do produto e componentes na fábrica. Caso a encomenda do veículo não seja aceita pela montadora, o contrato será cancelado automaticamente sem ônus para as partes.',
+                
+                '8. O pagamento total do contrato deverá ser realizado no primeiro dia útil após a comunicação do seu faturamento pela fabricante, ou, imediatamente após a entrega da nota fiscal, quando houver financiamento, aplicando-se, esse último prazo, exclusivamente, à quantia financiada. A comunicação será feita, inclusive, verbalmente ou pelo meio mais rápido disponibilizado pelo Comprador. A Fiat e a San Marino Veículos não se responsabilizam por pagamentos feitos em contas indevidas e que não sejam a elas destinados.',
+                
+                '9. A critério da San Marino, considerando as características da negociação, poderá ser exigido, no ato da assinatura, o pagamento parcial desse contrato.',
+                
+                '10. Não serão concedidos, em hipótese alguma, extensões no prazo para o pagamento do contrato ou no vencimento dos boletos bancários.',
+                
+                '11. Na hipótese de atraso no pagamento, será acrescida ao contrato uma multa de 2% e juros legais de 12% ao ano.',
+                
+                '12. Caso o Contratante deseje vender um ou mais veículos à San Marino, utilizando o eventual crédito dessa venda para quitação total ou parcial desse contrato, a San Marino fará uma proposta de compra, a partir de uma avaliação (documento em anexo), considerando as características do bem, estado de conservação e demanda do mercado, sendo que a entrega dos veículos usados contratados farão parte integrante deste contrato, sendo a sua entrega obrigatória, salvo o que consta no item 14 deste contrato. A avaliação vigerá por 2 (dois) dias, se preservadas, nesse período, as características avaliadas. Findo o prazo de vigência ou alteradas as características e/ou estado de conservação do veículo, o valor, inicialmente estipulado, será considerado como uma mera referência para a nova avaliação, a ser realizada na efetiva entrega do veículo.',
+                
+                '13. Estipulado o efetivo valor de avaliação, o veículo vendido à San Marino e deverá ser entregue livre de ônus, restrições ou multas, no máximo, até o dia em que a fabricante disponibilizar o veículo encomendado na concessionária. O Contratante deve entregar, também, a documentação pertinente válida, manual, chave reserva, nota fiscal de venda e CND federal (NF e CND para o caso de Pessoa Jurídica) e os demais equipamentos acessórios (ex.: controle de alarme). Ademais, o Contratante será responsável pela quitação de eventual saldo devedor de algum contrato de financiamento vigente sobre esse veículo e, também, pela respectiva liberação da restrição de alienação fiduciária junto ao Detran. Entretanto, na hipótese de a San Marino ter realizado a quitação do veículo, em nome do responsável, desde já, o Contratante autoriza que eventuais diferenças, exigidas na liquidação do contrato de financiamento, possam ser descontadas do crédito citado na cláusula 12, ou, ainda, serem cobradas administrativa ou judicialmente.',
+                
+                '14. A aquisição do veículo do Contratante, nas condições das cláusulas 12 e 13, dependerá de uma análise jurídica e subjetiva desse contratante e/ou do proprietário do veículo, pela San Marino, sob seus exclusivos critérios, cuja confirmação se dará em até 7 dias úteis da assinatura desse contrato. O Contratante declara que, recaindo qualquer tipo de ônus ou restrição (seja judicial ou administrativa), sobre o veículo vendido à San Marino, efetuará o pagamento, em 3 (três) dias, do valor correspondente ao recebido na sua avaliação, devidamente corrigido pelo IGPM (FGV), à San Marino. Sobre essa obrigação será acrescida uma multa contratual de 10%, além de qualquer ônus que o adquirente do veículo (mesmo um terceiro) venha a sofrer, além das demais despesas administrativas, judiciais, fiscais e de cancelamento e liquidação do negócio.',
+                
+                '15. O Contratante, também, declara-se ciente de que é de sua exclusiva responsabilidade a negociação e aprovação de eventual financiamento junto à instituição financeira escolhida. Ademais, se a instituição financeira não conceder ou cancelar o crédito, esse saldo deverá ser adimplido em uma única parcela ou por um novo contrato de financiamento, junto a outra instituição financeira, sob pena de inadimplemento do contrato de compra e venda e de seu respectivo cancelamento (vide cláusula 17).',
+                
+                '16. A concessionária não se responsabiliza por eventuais cancelamentos de créditos pelas instituições financeiras, bem como por qualquer outra circunstância de natureza particular do cliente, para alterar as condições de pagamento ora ajustadas.',
+                
+                '17. 5 (cinco) dias após o vencimento do prazo de pagamento, conforme previsto na cláusula 8, e não estando liquidado o contrato, no todo ou em parte, independentemente das razões do Contratante ou pela sua simples desistência em face do negócio, essa na vigência dos prazos contratados; se consolidará o inadimplemento e o respectivo cancelamento deste contrato. Nessas condições, será exigida uma multa no valor de 5% do contrato. Esta multa poderá ser compensada com os valores pagos a título de entrada ou parte do pagamento do presente negócio, persistindo a exigibilidade por eventual saldo.',
+                
+                '18. Após a liquidação INTEGRAL do contrato e da entrega do veículo pela fabricante à San Marino, iniciará o procedimento de preparo e o da regularização documental (sendo o caso), para que o veículo seja entregue em até 6(seis) dias úteis ao Contratante.'
+            ];
+            
+            clausulas.forEach(clausula => {
+                addText(clausula);
+                y += 3;
+            });
+            
+            y += 10;
+            // Preenche a data do rodapé automaticamente
+            addText(`Porto Alegre, ${formatDateLong(data.data)}.`, 10, 'normal', 'center');
+            y += 20;
+            
+            
+// Linhas de assinaturas conforme modelo
+y += 10;
+doc.setFontSize(10);
+doc.text('Porto Alegre, ' + formatDateLong(data.data) + '.', margin, y);
+y += 20;
+
+            // Centraliza as assinaturas do Contratante e da San Marino na segunda página
+            {
+                const lineLength2 = 60;
+                // largura disponível entre as margens
+                const availWidth2 = pageWidth - 2 * margin;
+                // sobra de espaço após considerar as duas linhas
+                const leftover2 = availWidth2 - (2 * lineLength2);
+                // dividimos a sobra em três: espaço esquerdo, espaço entre linhas e espaço direito
+                const space2 = leftover2 / 3;
+                const firstSigX2 = margin + space2;
+                const secondSigX2 = firstSigX2 + lineLength2 + space2;
+
+                // desenhar linhas
+                doc.line(firstSigX2, y, firstSigX2 + lineLength2, y);
+                doc.text('Assinatura do Contratante', firstSigX2 + lineLength2 / 2, y + 5, { align: 'center' });
+
+                doc.line(secondSigX2, y, secondSigX2 + lineLength2, y);
+                doc.text('San Marino Veículos', secondSigX2 + lineLength2 / 2, y + 5, { align: 'center' });
+            }
+
+y += 25;
+doc.setFontSize(10);
+doc.text('Testemunhas', margin, y);
+y += 10;
+
+doc.text('1.', margin, y);
+doc.line(margin + 10, y, margin + 70, y);
+doc.text('Assinatura, nome e CPF', margin + 10, y + 5);
+
+doc.text('2.', margin + 100, y);
+doc.line(margin + 110, y, margin + 170, y);
+doc.text('Assinatura, nome e CPF', margin + 110, y + 5);
+
+            
+            // Gerar nome do arquivo
+            const cpfCnpj = data.cpfCnpj ? data.cpfCnpj.replace(/\D/g, '') : 'sem_documento';
+            const fileName = `${cpfCnpj}_contrato_de_VD.pdf`;
+            
+            // Salvar PDF
+            doc.save(fileName);
+            
+            alert(`Contrato gerado com sucesso!\nArquivo: ${fileName}`);
+        }
+    </script>
+</body>
+</html>
