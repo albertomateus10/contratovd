@@ -1,0 +1,65 @@
+=== INÍCIO DO DOCX ===
+[P] Contrato de Compra e Venda por Faturamento Direto de Fábrica
+[P] Data:
+[P] MODALIDADE DO CLIENTE:
+[P] (   ) Pessoa Juridica    (    ) Taxista     (    ) Produtor Rural          (       ) PCD        (       ) P. FISICA
+[P] POSSUI ISENÇÃO DE:  ICMS   (       ) Sim  (     )Não  IPI (      ) Sim (    ) Não   Alvará (    ) Sim     (    ) Não
+[P] Em conformidade com as tratativas realizadas junto à Concessionária San Marino Veículos Ltda., encaminha-se o presente pedido de faturamento do(s) veículo(s) abaixo relacionados:
+[P] Vendedor:                                    Loja: SAN MARINO           Fone:(51) 30211133
+[P] E-mail:
+[P] I - Dados do Veículo
+[P] Quantidade (s):  Modelo:                                                    Desconto:        Portas:
+[P] Cód./Descrição da Cor:
+[P] Cód./Descrição dos Opcionais:
+[P] Concessionária de Entrega: SAN MARINO -
+[P] Valor Unitário do Veículo: Valor Total do Contrato:
+[P] II - Dados do Comprador
+[P] Nome / Razão Social:
+[P] Endereço:      Bairro:     Cidade:
+[P] CEP: Estado: E-mail:
+[P] CPF / CNPJ: Inscrição Estadual:
+[P] RG: Contato na Empresa:
+[P] Telefone:
+[P] III - Forma de Pagamento
+[P] Depósito / Transferência bancária:
+[P] Financiamento: Banco:Quantidade de parcelas: Valor das parcelas:
+[P] Veiculo usado:Placa: Valor utilizado: Quitação:Outros:
+[P] Observações:
+[P] É parte integrante deste contrato a ficha técnica do veículo contratado (Linha de Produtos Fiat), contendo os itens específicos que o compõe, ratificando os seus componentes básicos de série, os opcionais adquiridos bem como a sua cor, cujos itens deverão estar rubricados pelo comprador, indicando de forma irretratável as características do veículo.
+[P] Informações Legais em Cumprimento à Lei 13.111 de 25 de março de 2015
+[P] Declaro que previamente a aquisição do veículo supra referido, recebi clara e satisfatoriamente as informações sobre o valor dos tributos incidentes na comercialização do veículo e da situação de regularidade do mesmo, bem como sobre a inexistência de multas, taxas, débitos de impostos (inclusive a periodicidade de incidência) ou quaisquer fatos conhecidos que limitem ou impeçam a circulação do veículo. Igualmente me foi esclarecido sobre a não existência de registros conhecidos de furtos ou de registro de gravame (alienação fiduciária). Recebi o alerta que as informações fornecidas sobre a regularidade poderão ser obtidas e confirmadas nos sítios eletrônicos das autoridades policiais e fazendárias das unidades da Federação onde o veículo está registrado. A presente declaração tem como finalidade o cumprimento do quanto disposto na Lei 13.111/15 cujo texto tive ciência.
+[P] Informações legais em cumprimento à Lei 9.613, de 3 de março de 1998, e Resolução nº. 16 do COAF, DE 28 DE MARÇO DE 2007:
+[P] Declaro que, na forma da Resolução nº. 16 do COAF, de 28 de março de 2007 ………………………...Pessoa Politicamente Exposta (PPE).
+[P] ________________________________________________     ________________________
+[P] Assinatura do Cliente             Assinatura da Gestão    Assinatura do Vendedor
+[P] CONDIÇÕES GERAIS DO CONTRATO DE FATURAMENTO DIRETO DE FÁBRICA
+[P] Na melhor forma de direito, o Contratante declara a sua ciência e concordância com as seguintes cláusulas das Condições Gerais:
+[P] A leitura das informações contidas neste instrumento é de inteira responsabilidade do comprador, que, ao assinar este documento, declara ter lido e entendido todas as suas cláusulas, não havendo dúvidas em relação ao seu conteúdo.
+[P] Sendo o caso, ressalta-se, inicialmente, que as alíquotas tributárias diferenciadas foram praticadas, unicamente, pelo veículo adquirido se destinar ao ativo imobilizado da pessoa jurídica ou, ainda, pela incidência da legislação tributária vigente, conforme o enquadramento legal pertinente. Dessa forma, o veículo adquirido deve permanecer, por um prazo de até 12 meses, naquilo que prevê o decreto nº 57847 de 24/10/2024 (caso não haja outra previsão legal incidente), em nome do adquirente, sob pena de se consolidar: (a) uma conduta ilícita, por força de legislação específica; (b) o impedimento da realização de novos contratos nessa modalidade; (c) a sujeição do interessado as consequências civis e penais, eventualmente cabíveis.
+[P] O prazo de entrega do veículo é de até 90 (noventa) dias, contados da assinatura deste contrato. Vencido o prazo, sem o faturamento do veículo, as partes podem realizar a sua prorrogação tácita ou o devido cancelamento, mas esse de forma incontroversa e por escrito, sem qualquer ônus ou reconhecimento de perdas e danos.
+[P] Por circunstâncias imprevisíveis e alheias à esfera de controle da Concessionária, antes do seu faturamento, o preço do veículo poderá sofrer alterações, da parte do fabricante, sem prévio aviso. Dessa forma, o preço do contrato poderá sofrer alterações, na medida exata do novo preço, conforme a tabela de preços vigente no dia do faturamento. Destaca-se, ainda, que sobre o preço do veículo pode estar incidindo, temporariamente, alguma redução especial de determinada alíquota tributária. Desta forma, por ser uma política fiscal do Governo, quando do faturamento do veículo, essa tributação especial poderá estar revogada ou reajustada, ficando o Contratante, desde já, ciente e obrigado com o pagamento do novo preço que não contemple o referido benefício fiscal.
+[P] O Contratante declara estar ciente e concordar que o veículo poderá sofrer, por deliberação exclusiva da Fiat, alterações em suas características, considerando as atualizações implementadas nas versões de cada modelo (itens de série e conjunto de opcionais), quando de seu faturamento ou produção, sem prévio aviso. Ademais, tais alterações poderão influenciar no preço final do veículo, ficando o Contratante, desde já, totalmente ciente e de acordo com as eventuais alterações.
+[P] O desconto concedido advém da quantidade, categoria e caraterísticas do veículo adquirido, só podendo ser aplicado nessas exatas condições. Caso o faturamento ocorra em uma quantidade menor ou com características distintas do requerido, por solicitação do Contratante, poderá haver uma redução no percentual do desconto, adequando o contrato aos valores praticados em tal condição. Dessa forma, o Contratante declara a sua total ciência e concordância com a eventual alteração no desconto e respectivo valor final.
+[P] O faturamento do veículo encomendado está sujeito a análise e recusa pela Fiat. A aprovação dependerá de um parecer do seu departamento financeiro, em conformidade com a regulamentação vigente no contrato de intermediação de vendas diretas entre a Fiat e esta concessionária, além da disponibilidade ou continuidade do produto e componentes na fábrica. Caso a encomenda do veículo não seja aceita pela montadora, o contrato será cancelado automaticamente sem ônus para as partes.
+[P] O pagamento total do contrato deverá ser realizado no primeiro dia útil após a comunicação do seu faturamento pela fabricante, ou, imediatamente após a entrega da nota fiscal, quando houver financiamento, aplicando-se, esse último prazo, exclusivamente, à quantia financiada. A comunicação será feita, inclusive, verbalmente ou pelo meio mais rápido disponibilizado pelo Comprador. A Fiat e a San Marino Veículos não se responsabilizam por pagamentos feitos em contas indevidas e que não sejam a elas destinados.
+[P] A critério da San Marino, considerando as características da negociação, poderá ser exigido, no ato da assinatura, o pagamento parcial desse contrato.
+[P] Não serão concedidos, em hipótese alguma, extensões no prazo para o pagamento do contrato ou no vencimento dos boletos bancários.
+[P] Na hipótese de atraso no pagamento, será acrescida ao contrato uma multa de 2% e juros legais de 12% ao ano.
+[P] Caso o Contratante deseje vender um ou mais veículos à San Marino, utilizando o eventual crédito dessa venda para quitação total ou parcial desse contrato, a San Marino fará uma proposta de compra, a partir de uma avaliação (documento em anexo), considerando as características do bem, estado de conservação e demanda do mercado, sendo que a entrega dos veículos usados contratados farão parte integrante deste contrato, sendo a sua entrega obrigatória, salvo o que consta no item 14 deste contrato. A avaliação vigerá por 2 (dois) dias, se preservadas, nesse período, as características avaliadas. Findo o prazo de vigência ou alteradas as características e/ou estado de conservação do veículo, o valor, inicialmente estipulado, será considerado como uma mera referência para a nova avalição, a ser realizada na efetiva entrega do veículo.
+[P] Estipulado o efetivo valor de avaliação, o veículo vendido à San Marino e deverá ser entregue livre de ônus, restrições ou multas, no máximo, até o dia em que a fabricante disponibilizar o veículo encomendado na concessionária. O Contratante deve entregar, também, a documentação pertinente válida, manual, chave reserva, nota fiscal de venda e CND federal (NF e CND para o caso de Pessoa Jurídica) e os demais equipamentos acessórios (ex.: controle de alarme). Ademais, o Contratante será responsável pela quitação de eventual saldo devedor de algum contrato de financiamento vigente sobre esse veículo e, também, pela respectiva liberação da restrição de alienação fiduciária junto ao Detran. Entretanto, na hipótese de a San Marino ter realizado a quitação do veículo, em nome do responsável, desde já, o Contratante autoriza que eventuais diferenças, exigidas na liquidação do contrato de financiamento, possam ser descontadas do crédito citado na cláusula 12, ou, ainda, serem cobradas administrativa ou judicialmente.
+[P] A aquisição do veículo do Contratante, nas condições das cláusulas 12 e 13, dependerá de uma análise jurídica e subjetiva desse contratante e/ou do proprietário do veículo, pela San Marino, sob seus exclusivos critérios, cuja confirmação se dará em até 7 dias uteis da assinatura desse contrato. O Contratante declara que, recaindo qualquer tipo de ônus ou restrição (seja judicial ou administrativa), sobre o veículo vendido à San Marino, efetuará o pagamento, em 3 (três) dias, do valor correspondente ao recebido na sua avalição, devidamente corrigido pelo IGPM (FGV), à San Marino. Sobre essa obrigação será acrescida uma multa contratual de 10%, além de qualquer ônus que o adquirente do veículo (mesmo um terceiro) venha a sofrer, além das demais despesas administrativas, judiciais, fiscais e de cancelamento e liquidação do negócio.
+[P] O Contratante, também, declara-se ciente de que é de sua exclusiva responsabilidade a negociação e aprovação de eventual financiamento junto à instituição financeira escolhida. Ademais, se a instituição financeira não conceder ou cancelar o crédito, esse saldo deverá ser adimplido em uma única parcela ou por um novo contrato de financiamento, junto a outra instituição financeira, sob pena de inadimplemento do contrato de compra e venda e de seu respectivo cancelamento (vide cláusula 17).
+[P] A concessionária não se responsabiliza por eventuais cancelamentos de créditos pelas instituições financeiras, bem como por qualquer outra circunstância de natureza particular do cliente, para alterar as condições de pagamento ora ajustadas.
+[P] 5 (cinco) dias após o vencimento do prazo de pagamento, conforme previsto na cláusula 8, e não estando liquidado o contrato, no todo ou em parte, independentemente das razões do Contratante ou pela sua simples desistência em face do negócio, essa na vigência dos prazos contratados; se consolidará o inadimplemento e o respectivo cancelamento deste contrato. Nessas condições, será exigida uma multa no valor de 5% do contrato. Esta multa poderá ser compensada com os valores pagos a título de entrada ou parte do pagamento do presente negócio, persistindo a exigibilidade por eventual saldo.
+[P] Após a liquidação INTEGRAL do contrato e da entrega do veículo pela fabricante à San Marino, iniciará o procedimento de preparo e o da regularização documental (sendo o caso), para que o veículo seja entregue em até 6(seis) dias úteis ao Contratante.
+[P] Porto Alegre, ____ de _____________________ de 20______.
+[P] ____________________________
+[P] Assinatura do Contratante
+[P] ____________________________
+[P] San Marino Veículos
+[P] Testemunhas
+[P] 1.____________________________
+[P] Assinatura, nome e CPF
+[P] 2.____________________________
+[P] Assinatura, nome e CPF
+=== FIM DO DOCX ===

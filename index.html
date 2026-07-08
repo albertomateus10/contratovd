@@ -1,51 +1,55 @@
 <style>
   /* =========================
-       RESTAURANDO CSS ROBUSTO
+       RESTAURANDO CSS ROBUSTO (OTIMIZADO PARA 3 PÁGINAS A4 - TREBUCHET MS 11)
     ========================== */
   @page {
     size: A4;
-    margin: 3mm;
+    margin: 0; /* Zeramos a margem nativa para garantir consistência total */
   }
 
   body {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    line-height: 1.4;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 12px; /* Todo o contrato em tamanho 12 */
+    line-height: 1.25; /* Espaçamento de acordo com pedidonovo.docx */
     color: #000;
     margin: 0;
     padding: 0;
+    background-color: #f3f4f6; /* Fundo cinza moderno para visualização em tela */
   }
 
   .page {
     width: 210mm;
-    margin: 0 auto;
+    height: 297mm; /* Altura exata do A4 */
+    margin: 15px auto;
     background: white;
-    padding: 3mm 4mm;
+    padding: 2mm 3.5mm; /* Otimizado de 3mm 4mm para economizar espaço vertical */
     box-sizing: border-box;
     position: relative;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
   }
 
   .header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 5mm;
+    margin-bottom: 2mm;
   }
 
   .logo-container {
-    width: 60mm;
+    width: 50mm;
   }
 
   .date-container {
     text-align: right;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .main-title {
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    margin: 10mm 0;
+    margin: 3mm 0;
   }
 
   .section-title {
@@ -53,30 +57,30 @@
     font-weight: bold;
     text-decoration: underline;
     text-align: center;
-    margin: 3mm 0 1mm 0;
-    font-size: 13px;
+    margin: 1mm 0 0.2mm 0;
+    font-size: 12px;
   }
 
   .section-label {
     color: #b00000;
     font-weight: bold;
     text-decoration: underline;
-    margin: 3mm 0 1mm 0;
-    font-size: 13px;
+    margin: 1mm 0 0.2mm 0;
+    font-size: 12px;
     display: block;
   }
 
   .field-box {
     border: 1px solid #000;
-    padding: 3mm 5mm;
-    margin-bottom: 3mm;
+    padding: 2mm 4mm;
+    margin-bottom: 2mm;
   }
 
   .line-row {
     display: flex;
     align-items: baseline;
-    margin-bottom: 2mm;
-    gap: 2mm;
+    margin-bottom: 0.8mm; /* Mais compacto para otimizar espaço */
+    gap: 1.5mm;
   }
 
   .fill {
@@ -114,6 +118,10 @@
     text-decoration: underline;
   }
 
+  .i {
+    font-style: italic;
+  }
+
   .blue-u {
     color: blue !important;
     text-decoration: underline !important;
@@ -122,34 +130,34 @@
   .blue-paren {
     color: blue !important;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .opt {
     display: inline-flex;
     align-items: center;
-    gap: 1mm;
-    margin-right: 4mm;
+    gap: 0.8mm;
+    margin-right: 3mm;
   }
 
   .title-box {
     border: 1px solid #000;
     text-align: center;
-    padding: 1mm;
-    margin: 3mm 0;
+    padding: 0.8mm;
+    margin: 2mm 0;
   }
 
   .title-box span {
     color: #b00000;
     font-weight: bold;
     text-decoration: underline;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .field-box {
     border: none;
     padding: 0;
-    margin-bottom: 3mm;
+    margin-bottom: 1mm;
   }
 
   .dot-line {
@@ -164,28 +172,29 @@
   }
 
   .note-text {
-    font-size: 11px;
+    font-size: 12px; /* Mantido em 12 conforme solicitação global de tamanho 12 */
     text-align: justify;
-    margin: 2mm 0;
+    line-height: 1.2;
+    margin: 0.3mm 0;
   }
 
   .sign-table {
     width: 100%;
-    margin-top: 5mm;
+    margin-top: 3mm;
     text-align: center;
     border-collapse: collapse;
-    font-size: 11px;
+    font-size: 12px; /* Tamanho 12 */
   }
 
   .sign-table td {
     width: 33%;
-    padding: 0 2mm;
+    padding: 0 1.5mm;
     vertical-align: top;
   }
 
   .sign-line {
     border-top: 1px solid #000;
-    margin-bottom: 2mm;
+    margin-bottom: 1.5mm;
   }
 
   .print-bar {
@@ -199,13 +208,13 @@
   .mod-item {
     display: inline-flex;
     align-items: center;
-    gap: 1mm;
-    margin-right: 3mm;
+    gap: 0.8mm;
+    margin-right: 2.5mm;
     white-space: nowrap;
   }
 
   .mod-paren {
-    font-size: 16px;
+    font-size: 14px;
     display: inline-flex;
     align-items: center;
   }
@@ -216,13 +225,13 @@
     display: inline-block;
     text-align: center;
     outline: none;
-    margin: 0 1mm;
+    margin: 0 0.8mm;
     line-height: 1;
     text-transform: uppercase;
   }
 
   .mod-label {
-    font-size: 13px;
+    font-size: 12px;
     vertical-align: middle;
   }
 
@@ -241,33 +250,34 @@
     text-decoration: underline !important;
   }
 
-  /* Estilos específicos Pág 2 */
+  /* Estilos específicos Pág 2 e 3 */
   .p2 {
-    font-size: 9.5px;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 12px;
   }
 
   .p2 .main-title-alt {
     text-align: center;
     font-weight: bold;
     text-decoration: underline;
-    font-size: 13px;
-    margin: 3mm 0;
+    font-size: 12px;
+    margin: 5mm 0 6mm 0; /* Ajustado de 10mm para 6mm para dar espaço à cláusula 12 completa */
     text-transform: uppercase;
   }
 
   .p2 ol.terms {
-    padding-left: 8mm;
+    padding-left: 6mm;
     margin: 0;
   }
 
   .p2 ol.terms li {
-    margin-bottom: 0.3mm;
+    margin-bottom: 2.2mm; /* Reduzido de 3.2mm para 2.2mm para acomodar a cláusula 12 inteira */
     text-align: justify;
-    line-height: 1.2;
+    line-height: 1.25; /* Espaçamento simples */
   }
 
   .p2-footer {
-    margin-top: 5mm;
+    margin-top: 4mm;
   }
 
   .fill-black {
@@ -279,17 +289,27 @@
   }
 
   @media print {
+    body {
+      background-color: #fff;
+    }
+
     .print-bar {
       display: none;
     }
 
     .page {
-      margin: 0;
-      border: none;
-      box-shadow: none;
-      width: 100%;
-      height: auto;
-      min-height: 0;
+      margin: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      overflow: hidden; /* Evita vazamentos criando páginas extras */
+      box-sizing: border-box;
+      padding: 2mm 3.5mm;
     }
 
     .blue-link {
@@ -311,161 +331,157 @@
   </div>
 
   <section class="page">
-    <div class="header" style="margin-bottom: 5mm; margin-top: 4mm;">
-      <div class="logo-container">
-        <img src="logonova.png" alt="San Marino Logo" style="width: 55mm;">
+    <div class="header-container" style="margin-bottom: 6mm; margin-top: 2mm;">
+      <div class="logo-container" style="width: 48mm; margin-bottom: 3mm;">
+        <img src="logonova.png" alt="San Marino Logo" style="width: 45mm;">
       </div>
-      <div class="main-title" style="margin-bottom: 0; margin-top: 8mm; flex: 1; text-align: center;">Contrato de Compra
-        e Venda</div>
-      <div style="width: 55mm;"></div> <!-- Espaçador para centralizar o título -->
+      <div class="main-title" style="margin-bottom: 0; margin-top: 0; text-align: center; font-size: 15px; font-weight: bold; text-decoration: none; width: 100%;">Contrato de Compra e Venda por Faturamento Direto de Fábrica</div>
     </div>
 
-    <div
-      style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3mm; font-size: 13px;">
-      <div>À Fiat Automóveis S/A</div>
-      <div>Regional Porto Alegre – Vendas Diretas</div>
-    </div>
-    <div style="text-align: right;">
-      <span class="b">Data: <span class="fill" style="width: 15mm; text-align: center;" contenteditable="true"></span>
-        de <span class="fill" style="width: 50mm; text-align: center;" contenteditable="true"></span> de <span
-          class="fill" style="width: 15mm; text-align: center;" contenteditable="true"></span>.</span>
-    </div>
+    <div style="text-align: right; font-size: 12px; margin-top: 4mm; margin-bottom: 6mm; padding-right: 2mm;">
+      <span class="b">Data: <span class="fill" style="width: 15mm; text-align: center;" contenteditable="true"></span> de <span class="fill" style="width: 45mm; text-align: center;" contenteditable="true"></span> de <span class="fill" style="width: 12mm; text-align: center;" contenteditable="true"></span>.</span>
     </div>
 
-    <div class="line-row" style="margin-top: 3mm; align-items: center; font-size: 11px;">
-      <span style="margin-right: 2mm; white-space: nowrap;">MODALIDADE DO CLIENTE:</span>
-
+    <div style="font-weight: bold; font-size: 12px; margin-top: 2mm; margin-bottom: 1mm;">MODALIDADE DO CLIENTE:</div>
+    <div class="line-row" style="margin-bottom: 2mm; align-items: center; font-size: 12px; justify-content: space-between; width: 100%;">
       <div class="mod-item">
         <span>(<span class="mod-fill" contenteditable="true"></span>)</span>
         <span class="mod-label">Pessoa Jurídica</span>
       </div>
-
       <div class="mod-item">
         <span>(<span class="mod-fill" contenteditable="true"></span>)</span>
         <span class="mod-label">Taxista</span>
       </div>
-
       <div class="mod-item">
         <span>(<span class="mod-fill" contenteditable="true"></span>)</span>
         <span class="mod-label">Produtor Rural</span>
       </div>
-
       <div class="mod-item">
         <span>(<span class="mod-fill" contenteditable="true"></span>)</span>
         <span class="mod-label">PCD</span>
       </div>
-
       <div class="mod-item" style="margin-right: 0;">
         <span>(<span class="mod-fill" contenteditable="true"></span>)</span>
-        <span class="mod-label">P. FISICA</span>
+        <span class="mod-label">PESSOA FÍSICA</span>
       </div>
     </div>
 
-    <div class="line-row" style="margin-top: 4mm; align-items: center; font-size: 11px; white-space: nowrap;">
-      <span style="margin-right: 1mm;">POSSUI ISENÇÃO DE:</span>
-
-      <span style="margin-right: 1mm;">ICMS</span>
-      <div class="mod-item" style="margin-right: 2mm; margin-bottom: 0;">
-        <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-        <span class="mod-label">Sim</span>
-        <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-        <span class="mod-label">Não</span>
+    <div class="line-row" style="margin-top: 2mm; margin-bottom: 2mm; align-items: center; font-size: 12px; white-space: nowrap; justify-content: space-between; width: 100%;">
+      <span class="b" style="margin-right: 1mm;">POSSUI ISENÇÃO DE:</span>
+      
+      <div style="display: inline-flex; align-items: center; gap: 1mm;">
+        <span>ICMS</span>
+        <div class="mod-item" style="margin-right: 0; margin-bottom: 0;">
+          <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
+          <span class="mod-label" style="margin-right: 1mm;">Sim</span>
+          <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
+          <span class="mod-label">Não</span>
+        </div>
       </div>
 
-      <span style="width: 5mm;"></span>
-
-      <span style="margin-right: 1mm;">IPI</span>
-      <div class="mod-item" style="margin-right: 2mm; margin-bottom: 0;">
-        <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-        <span class="mod-label">Sim</span>
-        <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-        <span class="mod-label">Não</span>
+      <div style="display: inline-flex; align-items: center; gap: 1mm;">
+        <span>IPI</span>
+        <div class="mod-item" style="margin-right: 0; margin-bottom: 0;">
+          <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
+          <span class="mod-label" style="margin-right: 1mm;">Sim</span>
+          <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
+          <span class="mod-label">Não</span>
+        </div>
       </div>
 
-      <span style="width: 5mm;"></span>
-
-      <span style="margin-right: 1mm;">Alvará</span>
-      <div class="mod-item" style="margin-right: 0; margin-bottom: 0;">
-        <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-        <span class="mod-label">Sim</span>
-        <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-        <span class="mod-label">Não</span>
+      <div style="display: inline-flex; align-items: center; gap: 1mm;">
+        <span>Alvará</span>
+        <div class="mod-item" style="margin-right: 0; margin-bottom: 0;">
+          <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
+          <span class="mod-label" style="margin-right: 1mm;">Sim</span>
+          <span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
+          <span class="mod-label">Não</span>
+        </div>
       </div>
     </div>
 
     <div class="note-text">
-      Em conformidade com as tratativas realizadas junto à Concessionária San Marino Veículos Ltda., encaminha-se o
-      presente pedido de faturamento do(s) veículo(s) abaixo relacionados:
+      Em conformidade com as tratativas realizadas junto à Concessionária San Marino Veículos Ltda., encaminha-se o presente pedido de faturamento do(s) veículo(s) abaixo relacionados:
     </div>
 
-    <div class="line-row">
-      <span>Vendedor:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
-      <span style="width: 5mm;"></span>
-      <span>Loja: <span class="b">SAN MARINO</span></span>
-      <span style="width: 5mm;"></span>
-      <span>Fone: (51) 3021.1133</span>
+    <div class="line-row" style="margin-top: 1.5mm; justify-content: space-between;">
+      <div style="flex: 1; display: flex;">
+        <span>Vendedor:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+      </div>
+      <div style="width: 50mm;">
+        <span>Loja: <span class="b">SAN MARINO</span></span>
+      </div>
+      <div style="width: 50mm; text-align: right;">
+        <span>Fone: (51) 3021.1133</span>
+      </div>
     </div>
-    <div class="line-row">
+    <div class="line-row" style="margin-bottom: 2mm;">
       <span>E-mail:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
     </div>
 
-    <div class="title-box" style="margin: 6mm 0 4mm 0;"><span>Dados do Veículo</span></div>
-    <div class="field-box" style="font-size: 12px;">
+    <div class="section-title" style="font-size: 12px; font-weight: bold; color: #b00000; text-decoration: underline; text-align: center; margin: 3mm 0 2mm 0;">I - Dados do Veículo</div>
+    <div class="field-box" style="font-size: 12px; margin-bottom: 2mm;">
       <div class="line-row" style="align-items: center; white-space: nowrap;">
-        <span style="white-space: nowrap;">Quantidade(s):</span> <span class="fill" style="width: 10mm;"
-          contenteditable="true" oninput="this.innerText = this.innerText.replace(/[^0-9]/g, '')"></span>
-        <span style="width: 3mm;"></span>
+        <span>Quantidade (s):</span> <span class="fill" style="width: 10mm;" contenteditable="true" oninput="this.innerText = this.innerText.replace(/[^0-9]/g, '')"></span>
+        <span style="width: 2mm;"></span>
         <span>Modelo:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
-        <span style="width: 3mm;"></span>
+        <span style="width: 2mm;"></span>
         <span>Desconto:</span> <span class="fill" style="width: 25mm;" contenteditable="true"></span>
-        <span style="width: 3mm;"></span>
-        <span>Portas:</span> <span class="fill" style="width: 20mm;" contenteditable="true"></span>
+        <span style="width: 2mm;"></span>
+        <span>Portas:</span> <span class="fill" style="width: 15mm;" contenteditable="true"></span>
       </div>
       <div class="line-row">
         <span>Cód./Descrição da Cor:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
       </div>
       <div class="line-row">
-        <span>Cód./Descrição dos Opcionais:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span> /
-        <span class="fill" style="width: 40mm;" contenteditable="true"></span>.
+        <span>Cód./Descrição dos Opcionais:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
       </div>
       <div class="line-row" style="align-items: center;">
-        <span>Concessionária de Entrega:</span>
-        <span class="opt" style="margin-left: 2mm;"><span>(<span class="mod-fill" style="min-width: 3mm;"
-              contenteditable="true"></span>)</span> Matriz</span>
-        <span class="opt"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-          Zona Sul</span>
-        <span class="opt"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-          Gravataí</span>
-        <span class="opt"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span>
-          Viamão</span>
+        <span>Concessionária de Entrega: SAN MARINO - </span>
+        <span class="opt" style="margin-left: 2mm;"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Matriz</span>
+        <span class="opt"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Zona Sul</span>
+        <span class="opt"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Gravataí</span>
+        <span class="opt"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Viamão</span>
       </div>
-      <div class="line-row" style="margin-top: 2mm;">
-        <span class="b">Valor Total do Veículo Unitário:</span> <span class="fill" style="width: 60mm;"
-          contenteditable="true"></span>
+      <div class="line-row" style="margin-top: 1mm; justify-content: space-between;">
+        <div style="flex: 1; display: flex;">
+          <span class="b">Valor Unitário do Veículo:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="flex: 1; display: flex;">
+          <span class="b">Valor Total do Contrato:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+        </div>
       </div>
     </div>
 
-    <div class="section-label" style="text-align: center;">Dados do SOLICITANTE para Faturamento</div>
-    <div style="font-size: 12px;">
+    <div class="section-title" style="font-size: 12px; font-weight: bold; color: #b00000; text-decoration: underline; text-align: center; margin: 3mm 0 2mm 0;">II - Dados do Comprador</div>
+    <div style="font-size: 12px; margin-bottom: 2mm;">
       <div class="line-row">
         <span>Nome / Razão Social:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
       </div>
-      <div class="line-row">
-        <span>Endereço:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
-        <span style="width: 5mm;"></span>
-        <span>Bairro:</span> <span class="fill" style="width: 40mm;" contenteditable="true"></span>
-        <span style="width: 5mm;"></span>
-        <span>Cidade:</span> <span class="fill" style="width: 40mm;" contenteditable="true"></span>
+      <div class="line-row" style="justify-content: space-between;">
+        <div style="flex: 1.5; display: flex;">
+          <span>Endereço:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 45mm; display: flex;">
+          <span>Bairro:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 45mm; display: flex;">
+          <span>Cidade:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+        </div>
+      </div>
+      <div class="line-row" style="justify-content: space-between;">
+        <div style="width: 50mm; display: flex;">
+          <span>CEP:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 35mm; display: flex;">
+          <span>Estado: RS</span>
+        </div>
+        <div style="flex: 1; display: flex;">
+          <span>E-mail:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+        </div>
       </div>
       <div class="line-row">
-        <span>CEP:</span> <span class="fill" style="width: 30mm;" contenteditable="true"></span>
-        <span style="width: 10mm;"></span>
-        <span>Estado: RS</span>
-        <span style="width: 10mm;"></span>
-        <span>E-mail do cliente:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
-      </div>
-      <div class="line-row">
-        <span>CNPJ:</span> <span class="fill" style="width: 60mm;" contenteditable="true"></span>
+        <span>CPF / CNPJ:</span> <span class="fill" style="width: 60mm;" contenteditable="true"></span>
         <span style="width: 10mm;"></span>
         <span>Inscrição Estadual:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
       </div>
@@ -479,211 +495,147 @@
       </div>
     </div>
 
-    <div class="section-title">Formas de Pagamento</div>
-    <div style="font-size: 11px; margin-top: 3mm;">
-      <div class="line-row" style="align-items: center; white-space: nowrap;">
-        <span>Parte de pagamento:</span> <span class="fill" style="width: 32mm;" contenteditable="true"></span>
-        <span style="width: 3mm;"></span>
-        <span>Depósito transferência:</span> <span class="fill" style="width: 32mm;" contenteditable="true"></span>
-        <span style="width: 3mm;"></span>
-        <span style="margin-right: 1mm;">BNDES:</span>
-        <span class="opt"><span>(<span class="mod-fill" style="min-width:3mm;" contenteditable="true"></span>)</span>
-          Sim</span>
-        <span class="opt"><span>(<span class="mod-fill" style="min-width:3mm;" contenteditable="true"></span>)</span>
-          Não</span>
+    <div class="section-title" style="font-size: 12px; font-weight: bold; color: #b00000; text-decoration: underline; text-align: center; margin: 3mm 0 2mm 0;">III - Forma de Pagamento</div>
+    <div style="font-size: 12px; margin-bottom: 2mm;">
+      <div class="line-row">
+        <span>Depósito / Transferência bancária:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
       </div>
-      <div class="line-row" style="margin-top: 2mm; align-items: center; white-space: nowrap;">
-        <span>Financiamento:</span>
-        <span style="width: 2mm;"></span>
-        <span>Banco:</span> <span class="fill" style="width: 40mm;" contenteditable="true"></span>
-        <span style="width: 3mm;"></span>
-        <span>Qtde parcelas:</span> <span class="fill" style="width: 15mm;" contenteditable="true"></span>
-        <span style="width: 3mm;"></span>
-        <span>Valor parcelas:</span> <span class="fill" style="width: 30mm;" contenteditable="true"></span>
+      <div class="line-row" style="justify-content: space-between;">
+        <div style="flex: 1.2; display: flex;">
+          <span>Financiamento:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 40mm; display: flex; align-items: center;">
+          <span>Banco:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 58mm; display: flex; align-items: center;">
+          <span style="white-space: nowrap;">Quantidade de parcelas:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 45mm; display: flex; align-items: center;">
+          <span style="white-space: nowrap;">Valor das parcelas:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+        </div>
       </div>
-      <div class="line-row" style="margin-top: 2mm; align-items: center; white-space: nowrap;">
-        <span>Veículo usado:</span> <span class="fill" style="width: 35mm;" contenteditable="true"></span>
-        <span style="width: 2mm;"></span>
-        <span>Placa:</span> <span class="fill" style="width: 20mm;" contenteditable="true"></span>
-        <span style="width: 2mm;"></span>
-        <span>Valor utilizado:</span> <span class="fill" style="width: 35mm;" contenteditable="true"></span>
-        <span style="width: 3mm;"></span>
-        <span>Quitação: <span>(<span><span class="mod-fill" style="min-width:3mm;"
-                contenteditable="true"></span>)</span> Sim</span> <span>(<span><span class="mod-fill"
-                style="min-width:3mm;" contenteditable="true"></span>)</span> Não</span></span>
+      <div class="line-row" style="justify-content: space-between;">
+        <div style="width: 55mm; display: flex;">
+          <span style="white-space: nowrap;">Veiculo usado:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 35mm; display: flex;">
+          <span>Placa:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 45mm; display: flex;">
+          <span>Valor utilizado:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        </div>
+        <div style="width: 45mm; display: flex;">
+          <span>Quitação:</span>
+          <span class="opt" style="margin-left: 1.5mm; margin-right: 0;"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Sim</span>
+          <span class="opt" style="margin-right: 0;"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Não</span>
+        </div>
+      </div>
+      <div class="line-row">
+        <span>Outros:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
       </div>
     </div>
 
-    <div class="line-row" style="margin-top: 5mm; align-items: center;">
+    <div class="line-row" style="margin-top: 1.5mm; align-items: center;">
       <span class="b" style="margin-right: 2mm;">Observações:</span>
       <span class="fill" style="flex: 1;" contenteditable="true"></span>
     </div>
+    <div class="note-text b" style="margin-top: 2.5mm; margin-bottom: 2mm;">
+      É parte integrante deste contrato a ficha técnica do veículo contratado (Linha de Produtos Fiat), contendo os itens específicos que o compõe, ratificando os seus componentes básicos de série, os opcionais adquiridos bem como a sua cor, cujos itens deverão estar rubricados pelo comprador, indicando de forma irretratável as características do veículo.
+    </div>
     <div class="note-text b">
-      **Informações Legais em Cumprimento a Lei 13.111 de 25 de março de 2015**
+      Informações Legais em Cumprimento à Lei 13.111 de 25 de março de 2015
     </div>
     <div class="note-text">
-      Declaro que previamente a aquisição do veículo supra referido, recebi clara e satisfatoriamente as informações
-      sobre o valor dos tributos incidentes na comercialização do veículo e da situação de regularidade do mesmo, bem
-      como sobre a inexistência de multas, taxas, débitos de impostos (inclusive a periodicidade de incidência) ou
-      quaisquer fatos conhecidos que limitem ou impeçam a circulação do veículo. Igualmente me foi esclarecido sobre a
-      não existência de registros conhecidos de furtos ou de registro de gravame (alienação fiduciária). Recebi o alerta
-      que as informações fornecidas sobre a regularidade poderão ser obtidas e confirmadas nos sítios eletrônicos das
-      autoridades policiais e fazendárias das unidades da Federação onde o veículo está registrado. A presente
-      declaração tem como finalidade o cumprimento do quanto disposto na Lei 13.111/15 cujo texto tive ciência.
+      Declaro que previamente a aquisição do veículo supra referido, recebi clara e satisfatoriamente as informações sobre o valor dos tributos incidentes na comercialização do veículo e da situação de regularidade do mesmo, bem como sobre a inexistência de multas, taxas, débitos de impostos (inclusive a periodicidade de incidência) ou quaisquer fatos conhecidos que limitem ou impeçam a circulação do veículo. Igualmente me foi esclarecido sobre a não existência de registros conhecidos de furtos ou de registro de gravame (alienação fiduciária). Recebi o alerta que as informações fornecidas sobre a regularidade poderão ser obtidas e confirmadas nos sítios eletrônicos das autoridades policiais e fazendárias das unidades da Federação onde o veículo está registrado. A presente declaração tem como finalidade o cumprimento do quanto disposto na Lei 13.111/15 cujo texto tive ciência.
     </div>
     <div class="note-text">
-      <span class="b">Informações legais em cumprimento a Lei 9.613, de 3 de março de 1998, e Resolução no. 16 do COAF,
-        de 28 de março de 2007:</span><br>
-      Declaro que, na forma da Resolução no. 16 do COAF, de 28 de março de 2007, <span class="fill" style="width: 15mm;"
-        contenteditable="true"></span> é/ não é <span class="b">Pessoa Politicamente Exposta</span>(PPE).
+      <span class="b">Informações legais em cumprimento à Lei 9.613, de 3 de março de 1998, e Resolução nº. 16 do COAF, DE 28 DE MARÇO DE 2007:</span><br>
+      Declaro que, na forma da Resolução nº. 16 do COAF, de 28 de março de 2007, <span class="fill" style="width: 15mm;" contenteditable="true"></span> é/ não é <span class="b">Pessoa Politicamente Exposta</span> (PPE).
     </div>
 
-    <table class="sign-table" style="margin-top: 10mm;">
-      <tr>
-        <td>
-          <div class="sign-line"></div>
-          <div>Assinatura do Cliente</div>
-        </td>
-        <td>
-          <div class="sign-line"></div>
-          <div>Anuência da Gerência San Marino</div>
-        </td>
-        <td>
-          <div class="sign-line"></div>
-          <div>Ciência do Vendedor</div>
-        </td>
-      </tr>
-    </table>
+    <div style="margin-top: 18mm; display: flex; justify-content: space-between; font-size: 12px; text-align: center;">
+      <div style="width: 30%;">
+        <div style="border-top: 1px solid #000; margin-bottom: 1.5mm;"></div>
+        <div>Assinatura do Cliente</div>
+      </div>
+      <div style="width: 30%;">
+        <div style="border-top: 1px solid #000; margin-bottom: 1.5mm;"></div>
+        <div>Assinatura da Gestão</div>
+      </div>
+      <div style="width: 30%;">
+        <div style="border-top: 1px solid #000; margin-bottom: 1.5mm;"></div>
+        <div>Assinatura do Vendedor</div>
+      </div>
+    </div>
   </section>
 
 
-  <!-- =========================
-       PÁGINA 2 (compactada)
-  ========================== -->
   <section class="page page-break p2">
     <div class="page-inner">
       <div class="main-title-alt">CONDIÇÕES GERAIS DO CONTRATO DE FATURAMENTO DIRETO DE FÁBRICA</div>
 
-      <div class="note-text b" style="margin-bottom: 2mm;">
+      <div class="note-text b" style="margin-bottom: 1.5mm;">
         Na melhor forma de direito, o Contratante declara a sua ciência e concordância com as seguintes cláusulas das
         Condições Gerais:
       </div>
 
       <ol class="terms">
-        <li>A leitura das informações contidas neste instrumento é de inteira responsabilidade do comprador.</li>
-        <li>Sendo o caso, ressalta-se, inicialmente, que as alíquotas tributárias diferenciadas foram praticadas,
-          unicamente, pelo veículo adquirido se destinar ao ativo imobilizado da pessoa jurídica ou, ainda, pela
-          incidência da legislação tributária vigente, conforme o enquadramento legal pertinente. Dessa forma, o veículo
-          adquirido deve permanecer, por um prazo de até 12 meses (não havendo outra previsão legal incidente), em nome
-          do adquirente, sob pena de se consolidar: (a) uma conduta ilícita, por força de legislação específica; (b) o
-          impedimento da realização de novos contratos nessa modalidade; (c) a sujeição do interessado às consequências
-          civis e penais, eventualmente cabíveis.</li>
-        <li class="bold"><span class="u">O prazo de entrega do veículo é de até 90 (noventa) dias</span>, contados da
-          assinatura deste contrato. Vencido o prazo, sem o faturamento do veículo, as partes podem realizar a sua
-          prorrogação tácita ou o devido cancelamento, mas esse de forma incontroversa e por escrito, sem qualquer ônus
-          ou reconhecimento de perdas e danos.</li>
-        <li class="bold"><span class="u">O preço do veículo está sujeito a alteração, sem prévio aviso, conforme tabela
-            de preço vigente no dia do faturamento.</span> Destaca-se que sobre o preço do veículo pode estar incidindo,
-          temporariamente, alguma redução especial de determinada alíquota tributária. Desta forma, por ser uma política
-          fiscal do Governo, quando do faturamento do veículo, essa tributação especial poderá estar revogada ou
-          reajustada, ficando o Contratante, desde já, ciente e obrigado com o pagamento do novo preço que não contemple
-          o referido benefício fiscal.</li>
-        <li>O Contratante declara estar ciente e concordar que o veículo poderá sofrer, por deliberação exclusiva da
-          Fiat Chrysler Automobiles, alterações em suas características, considerando as atualizações implementadas nas
-          versões de cada modelo (itens de série e conjunto de opcionais), quando de seu faturamento ou produção, sem
-          prévio aviso. <span class="u">Ademais, tais alterações podem influenciar no preço final do veículo, ficando o
-            Contratante, desde já, totalmente ciente.</span></li>
-        <li>O desconto concedido advém da quantidade, categoria e características do veículo adquirido, só podendo ser
-          aplicado nessas exatas condições. Caso o faturamento ocorra em uma quantidade menor ou com características
-          distintas do requerido, por solicitação do Contratante, poderá haver uma redução no percentual do desconto,
-          adequando o contrato aos valores praticados em tal condição. Dessa forma, o Contratante declara a sua total
-          ciência e concordância com a eventual alteração no desconto e respectivo valor final.</li>
-        <li class="bold"><span class="u">O faturamento do veículo encomendado está sujeito a análise e recusa pela Fiat
-            Chrysler Automobiles.</span> A aprovação dependerá de um parecer do seu departamento financeiro, em
-          conformidade com a regulamentação vigente no contrato de intermediação de vendas diretas entre a Fiat Chrysler
-          Automobiles e esta concessionária, além da disponibilidade ou continuidade do produto e componentes na
-          fábrica.</li>
-        <li class="bold"><span class="u">O pagamento total do contrato deverá ser realizado no primeiro dia útil após a
-            comunicação do seu faturamento pela fabricante, ou, imediatamente após a entrega da nota fiscal, quando
-            houver financiamento, aplicando-se, esse último prazo, exclusivamente, à quantia financiada. A comunicação
-            será feita, inclusive, verbalmente ou pelo meio mais rápido disponibilizado pelo Contratante.</span> A Fiat
-          Chrysler Automobiles e a San Marino Veículos LTDA não se responsabilizam por pagamentos feitos em contas
-          indevidas e que não sejam a elas destinados.</li>
-        <li class="bold"><span class="u">A critério da San Marino, considerando as características da negociação, poderá
-            ser exigido, no ato da assinatura, o pagamento parcial desse contrato.</span></li>
-        <li>Não serão concedidos, em hipótese alguma, extensões no prazo para o pagamento do contrato ou no vencimento
-          dos boletos bancários.</li>
-        <li class="bold"><span class="u">Na hipótese de atraso no pagamento, será acrescida ao contrato uma multa de 2%
-            e juros legais de 12% ao ano.</span></li>
-        <li>Caso o Contratante deseje vender um ou mais veículos à San Marino, utilizando the eventual crédito dessa
-          venda para quitação total ou parcial desse contrato, a San Marino fará uma proposta de compra, a partir de uma
-          avaliação (documento em anexo), considerando as características do bem, estado de conservação e demanda do
-          mercado. <span class="u">A avaliação vigerá por 2 (dois) dias</span>, se preservadas, nesse período, as
-          características avaliadas. Findo o prazo de vigência ou alteradas as características e estado de conservação,
-          o valor, inicialmente estipulado, será considerado como uma mera referência para a nova avaliação, a ser
-          realizada na efetiva data de entrega do veículo.</li>
-        <li><span class="bold"><span class="u">Estipulado o efetivo valor de avaliação, o veículo vendido à San Marino
-              deverá ser entregue livre de ônus, restrições ou multas</span></span>, no máximo, até o dia em que a
-          fabricante disponibilizar o veículo encomendado na concessionária. O Contratante deve entregar, também, a
-          documentação pertinente válida, manual, chave reserva, nota fiscal de venda e CND federal (NF e CND para o
-          caso de P. Jurídica) e os demais equipamentos acessórios (ex.: controle de alarme). Ademais, o Contratante
-          será responsável pela quitação de eventual saldo devedor de algum contrato de financiamento vigente sobre esse
-          veículo e, também, pela respectiva liberação da restrição de alienação fiduciária junto ao Detran. Entretanto,
-          na hipótese de a San Marino ter realizado a quitação do veículo, em nome do responsável, desde já, o
-          Contratante autoriza que eventuais diferenças, exigidas na liquidação do contrato de financiamento, possam ser
-          descontadas do crédito citado na cláusula 12, ou, ainda, serem cobradas administrativa ou judicialmente.</li>
-        <li><span class="u">A aquisição do veículo do Contratante, nas condições das cláusulas 12 e 13, dependerá de uma
-            análise jurídica e subjetiva desse contratante e/ou do proprietário do veículo, pela San Marino, sob seus
-            exclusivos critérios, cuja confirmação se dará em até 7 dias úteis da assinatura desse contrato.</span> O
-          Contratante declara que, recaindo qualquer tipo de ônus ou restrição (seja judicial ou administrativa), sobre
-          o veículo vendido à San Marino, efetuará o pagamento, em 3 (três) dias, do valor correspondente ao recebido na
-          sua avaliação, devidamente corrigido pelo IGPM (FGV), à San Marino. Sobre essa obrigação será acrescida uma
-          multa contratual de 10%, como todo e qualquer ônus que o adquirente (um terceiro) do veículo venha a sofrer,
-          além das demais despesas administrativas, judiciais, fiscais e de cancelamento e liquidação do negócio.</li>
-        <li>O Contratante, também, declara-se ciente de que é de sua exclusiva responsabilidade a negociação e aprovação
-          de eventual financiamento junto à instituição financeira escolhida. Ademais, se a instituição financeira não
-          conceder (cancelar) o crédito, esse saldo deverá ser adimplido em uma única parcela ou por um novo contrato de
-          financiamento, junto a outra instituição financeira, sob pena de inadimplemento do contrato de compra e venda
-          e de seu respectivo cancelamento (vide cláusula 17).</li>
-        <li>A concessionária não se responsabiliza por eventuais cancelamentos de créditos pelas instituições
-          financeiras, bem como por qualquer outra circunstância de natureza particular do cliente, para alterar as
-          condições de pagamento ora ajustadas.</li>
-        <li class="bold"><span class="u">5 (cinco) dias após o vencimento do prazo de pagamento e não estando liquidado
-            o contrato, no todo ou em parte, independentemente das razões do Contratante ou pela sua simples desistência
-            em face do negócio, essa na vigência dos prazos contratados; se consolidará o inadimplemento e o respectivo
-            cancelamento deste contrato. Nessas condições, será exigida uma multa no valor de 5% do contrato.</span>
-          Esta multa poderá ser compensada com os valores pagos a título de entrada do presente negócio, persistindo a
-          exigibilidade por eventual saldo.</li>
-        <li>Após a liquidação INTEGRAL do contrato e da entrega do veículo pela fabricante à San Marino, iniciará o
-          procedimento de preparo e o da regularização documental (sendo o caso), para que o veículo seja entregue em
-          até 6 (seis) dias úteis ao Contratante.</li>
+        <li>A leitura das informações contidas neste instrumento é de inteira responsabilidade do comprador, que, ao assinar este documento, declara ter lido e entendido todas as suas cláusulas, não havendo dúvidas em relação ao seu conteúdo.</li>
+        <li>Sendo o caso, ressalta-se, inicialmente, que as alíquotas tributárias diferenciadas foram praticadas, unicamente, pelo veículo adquirido se destinar ao ativo imobilizado da pessoa jurídica ou, ainda, pela incidência da legislação tributária vigente, conforme o enquadramento legal pertinente. Dessa forma, o veículo adquirido deve permanecer, por um prazo de até 12 meses, naquilo que prevê o decreto nº 57847 de 24/10/2024 (caso não haja outra previsão legal incidente), em nome do adquirente, sob pena de se consolidar: (a) uma conduta ilícita, por força de legislação específica; (b) o impedimento da realização de novos contratos nessa modalidade; (c) a sujeição do interessado as consequências civis e penais, eventualmente cabíveis.</li>
+        <li><span class="b u">O prazo de entrega do veículo é de até 90 (noventa) dias</span>, contados da assinatura deste contrato. <span class="b u">Vencido o prazo, sem o faturamento do veículo</span>, as partes podem realizar a sua prorrogação tácita ou o devido cancelamento, mas esse de forma incontroversa e por escrito, sem qualquer ônus ou reconhecimento de perdas e danos.</li>
+        <li><span class="b u">Por circunstâncias imprevisíveis e alheias à esfera de controle da Concessionária, antes do seu faturamento, o preço do veículo poderá sofrer alterações, da parte do fabricante, sem prévio aviso. Dessa forma, o preço do contrato poderá sofrer alterações, na medida exata do novo preço, conforme a tabela de preços vigente no dia do faturamento.</span> Destaca-se, ainda, que sobre o preço do veículo pode estar incidindo, temporariamente, alguma redução especial de determinada alíquota tributária. Desta forma, por ser uma política fiscal do Governo, quando do faturamento do veículo, essa tributação especial poderá estar revogada ou reajustada, ficando o Contratante, desde já, ciente e obrigado com o pagamento do novo preço que não contemple o referido benefício fiscal.</li>
+        <li>O Contratante declara estar ciente e concordar que o veículo poderá sofrer, por deliberação exclusiva da Fiat, alterações em suas características, considerando as atualizações implementadas nas versões de cada modelo (itens de série e conjunto de opcionais), quando de seu faturamento ou produção, sem prévio aviso. <span class="b u">Ademais, tais alterações poderão influenciar no preço final do veículo, ficando o Contratante, desde já, totalmente ciente e de acordo com as eventuais alterações.</span></li>
+        <li>O desconto concedido advém da quantidade, categoria e características do veículo adquirido, só podendo ser aplicado nessas exatas condições. Caso o faturamento ocorra em uma quantidade menor ou com características distintas do requerido, por solicitação do Contratante, poderá haver uma redução no percentual do desconto, adequando o contrato aos valores praticados em tal condição. Dessa forma, o Contratante declara a sua total ciência e concordância com a eventual alteração no desconto e respectivo valor final.</li>
+        <li><span class="b u">O faturamento do veículo encomendado está sujeito a análise e recusa pela Fiat.</span> A aprovação dependerá de um parecer do seu departamento financeiro, em conformidade com a regulamentação vigente no contrato de intermediação de vendas diretas entre a Fiat e esta concessionária, além da disponibilidade ou continuidade do produto e componentes na fábrica. Caso a encomenda do veículo não seja aceita pela montadora, o contrato será cancelado automaticamente sem ônus para as partes.</li>
+        <li><span class="b u">O pagamento total do contrato deverá ser realizado no primeiro dia útil após a comunicação do seu faturamento pela fabricante, ou, imediatamente após a entrega da nota fiscal, quando houver financiamento, aplicando-se, esse último prazo, exclusivamente, à quantia financiada. A comunicação será feita, inclusive, verbalmente ou pelo meio mais rápido disponibilizado pelo Comprador.</span> A Fiat e a San Marino Veículos não se responsabilizam por pagamentos feitos em contas indevidas e que não sejam a elas destinados.</li>
+        <li><span class="b u">A critério da San Marino, considerando as características da negociação, poderá ser exigido, no ato da assinatura, o pagamento parcial desse contrato.</span></li>
+        <li>Não serão concedidos, em hipótese alguma, extensões no prazo para o pagamento do contrato ou no vencimento dos boletos bancários.</li>
+        <li><span class="b u">Na hipótese de atraso no pagamento, será acrescida ao contrato uma multa de 2% e juros legais de 12% ao ano.</span></li>
+        <li>Caso o Contratante deseje vender um ou mais veículos à San Marino, utilizando o eventual crédito dessa venda para quitação total ou parcial desse contrato, a San Marino fará uma proposta de compra, a partir de uma avaliação (documento em anexo), considerando as características do bem, estado de conservação e demanda do mercado, sendo que a entrega dos veículos usados contratados farão parte <span class="b u">integrante deste contrato</span>, sendo a sua entrega obrigatória, salvo o que consta no item 14 deste contrato. <span class="b u">A avaliação vigerá por 2 (dois) dias</span>, se preservadas, nesse período, as características avaliadas. Findo o prazo de vigência ou alteradas as características e/ou estado de conservação do veículo, o valor, inicialmente estipulado, será considerado como uma mera referência para a nova avaliação, a ser realizada na efetiva entrega do veículo.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =========================
+       PÁGINA 3
+  ========================== -->
+  <section class="page page-break p2">
+    <div class="page-inner">
+      <ol class="terms" start="13" style="margin-top: 10mm;">
+        <li><span class="b u">Estipulado o efetivo valor de avaliação, o veículo vendido à San Marino deverá ser entregue livre de ônus, restrições ou multas</span>, no máximo, até o dia em que a fabricante disponibilizar o veículo encomendado na concessionária. O Contratante deve entregar, também, a documentação pertinente válida, manual, chave reserva, nota fiscal de venda e CND federal (NF e CND para o caso de Pessoa Jurídica) e os demais equipamentos acessórios (ex.: controle de alarme). Ademais, o Contratante será responsável pela quitação de eventual saldo devedor de algum contrato de financiamento vigente sobre esse veículo e, também, pela respectiva liberação da restrição de alienação fiduciária junto ao Detran. Entretanto, na hipótese de a San Marino ter realizado a quitação do veículo, em nome do responsável, desde já, o Contratante autoriza que eventuais diferenças, exigidas na liquidação do contrato de financiamento, possam ser descontadas do crédito citado na cláusula 12, ou, ainda, serem cobradas administrativa ou judicialmente.</li>
+        <li><span class="b u">A aquisição do veículo do Contratante, nas condições das cláusulas 12 e 13, dependerá de uma análise jurídica e subjetiva desse contratante e/ou do proprietário do veículo, pela San Marino, sob seus exclusivos critérios, cuja confirmação se dará em até 7 dias úteis da assinatura desse contrato.</span> O Contratante declara que, recaindo qualquer tipo de ônus ou restrição (seja judicial ou administrativa), sobre o veículo vendido à San Marino, efetuará o pagamento, em 3 (três) dias, do valor correspondente ao recebido na sua avaliação, devidamente corrigido pelo IGPM (FGV), à San Marino. Sobre essa obrigação será acrescida uma multa contratual de 10%, além de qualquer ônus que o adquirente do veículo (mesmo um terceiro) venha a sofrer, além das demais despesas administrativas, judiciais, fiscais e de cancelamento e liquidação do negócio.</li>
+        <li>O Contratante, também, declara-se ciente de que é de sua exclusiva responsabilidade a negociação e aprovação de eventual financiamento junto à instituição financeira escolhida. Ademais, se a instituição financeira não conceder ou cancelar o crédito, esse saldo deverá ser adimplido em uma única parcela ou por um novo contrato de financiamento, junto a outra instituição financeira, sob pena de inadimplemento do contrato de compra e venda e de seu respectivo cancelamento (vide cláusula 17).</li>
+        <li>A concessionária não se responsabiliza por eventuais cancelamentos de créditos pelas instituições financeiras, bem como por qualquer outra circunstância de natureza particular do cliente, para alterar as condições de pagamento ora ajustadas.</li>
+        <li><span class="b u i">5 (cinco) dias após o vencimento do prazo de pagamento, conforme previsto na cláusula 8, e não estando liquidado o contrato, no todo ou em parte, independentemente das razões do Contratante ou pela sua simples desistência em face do negócio, essa na vigência dos prazos contratados; se consolidará o inadimplemento e o respectivo cancelamento deste contrato. Nessas condições, será exigida uma multa no valor de 5% do contrato.</span> Esta multa poderá ser compensada com os valores pagos a título de entrada ou parte do pagamento do presente negócio, persistindo a exigibilidade por eventual saldo.</li>
+        <li>Após a liquidação INTEGRAL do contrato e da entrega do veículo pela fabricante à San Marino, iniciará o procedimento de preparo e o da regularização documental (sendo o caso), para que o veículo seja entregue em até 6(seis) dias úteis ao Contratante.</li>
       </ol>
 
-      <div class="p2-footer">
-        Porto Alegre, <span class="fill-black" style="width: 15mm; text-align: center;" contenteditable="true"></span>
-        de <span class="fill-black" style="width: 40mm; text-align: center;" contenteditable="true"></span> de <span
-          class="fill-black" style="width: 10mm; text-align: center;" contenteditable="true"></span>.
+      <div class="p2-footer" style="margin-top: 25mm; font-size: 12px;">
+        Porto Alegre, <span class="fill-black" style="width: 15mm; text-align: center;" contenteditable="true"></span> de <span class="fill-black" style="width: 45mm; text-align: center;" contenteditable="true"></span> de <span class="fill-black" style="width: 12mm; text-align: center;" contenteditable="true"></span>.
       </div>
 
-      <div style="margin-top: 12mm; display: flex; justify-content: space-between;">
+      <div style="margin-top: 25mm; display: flex; justify-content: space-between; font-size: 12px;">
         <div style="width: 45%; text-align: center;">
-          <div style="border-top: 1px solid #000; margin-bottom: 1.5mm;"></div>
-          Assinatura do Contratante
+          <div style="border-top: 1px solid #000; margin-bottom: 2mm;"></div>
+          <div class="b">Assinatura do Contratante</div>
         </div>
         <div style="width: 45%; text-align: center;">
-          <div style="border-top: 1px solid #000; margin-bottom: 1.5mm;"></div>
-          San Marino Veículos
+          <div style="border-top: 1px solid #000; margin-bottom: 2mm;"></div>
+          <div class="b">San Marino Veículos</div>
         </div>
       </div>
 
-      <div style="margin-top: 10mm; display: flex; justify-content: space-between;">
-        <div style="width: 45%;">
-          1.<div style="border-top: 1px solid #000; margin: 4mm 0 1.5mm 0;"></div>
-          Testemunha
-        </div>
-        <div style="width: 45%;">
-          2.<div style="border-top: 1px solid #000; margin: 4mm 0 1.5mm 0;"></div>
-          Testemunha
+      <div style="margin-top: 10mm; font-size: 12px;">
+        <div class="b" style="margin-bottom: 6mm;">Testemunhas:</div>
+        <div style="display: flex; justify-content: space-between;">
+          <div style="width: 45%;">
+            <span>1.</span><div style="border-bottom: 1px solid #000; display: inline-block; width: 90%; margin-left: 2%; height: 1em; vertical-align: bottom;"></div>
+            <div style="margin-top: 2mm; margin-left: 5%;">Assinatura, nome e CPF</div>
+          </div>
+          <div style="width: 45%;">
+            <span>2.</span><div style="border-bottom: 1px solid #000; display: inline-block; width: 90%; margin-left: 2%; height: 1em; vertical-align: bottom;"></div>
+            <div style="margin-top: 2mm; margin-left: 5%;">Assinatura, nome e CPF</div>
+          </div>
         </div>
       </div>
     </div>
