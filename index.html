@@ -145,6 +145,7 @@
     align-items: center;
     gap: 0.8mm;
     margin-right: 3mm;
+    white-space: nowrap;
   }
 
   .title-box {
@@ -548,30 +549,33 @@
         <span>Depósito/Transferência bancária, R$:</span> <span class="fill" style="flex: 1;"
           contenteditable="true"></span>
       </div>
-      <div class="line-row" style="justify-content: space-between;">
-        <div style="display: flex; align-items: center;">
+      <div class="line-row" style="justify-content: flex-start; margin-top: 5px;">
+        <div style="display: flex; align-items: center; margin-right: 5mm;">
           <span>Financiamento:</span>
           <span class="opt" style="margin-left: 1.5mm; margin-right: 0;"><span>(<span class="mod-fill"
                 style="min-width: 3mm;" contenteditable="true"></span>)</span> Sim</span>
           <span class="opt" style="margin-left: 1.5mm; margin-right: 0;"><span>(<span class="mod-fill"
                 style="min-width: 3mm;" contenteditable="true"></span>)</span> Não</span>
         </div>
-        <div style="display: flex; align-items: center; flex: 0.8; margin-left: 2mm;">
-          <span>Banco:</span> <span id="fin-banco" class="fill" style="flex: 1; margin-right: 2mm;" contenteditable="true"></span>
-        </div>
-        <div style="display: flex; align-items: center; flex: 1.2;">
-          <span style="white-space: nowrap;">Valor do Financiamento, R$:</span> <span id="fin-valor-financ" class="fill" style="flex: 1; margin-right: 2mm;" contenteditable="true"></span>
-        </div>
-        <div style="display: flex; align-items: center; flex: 0.8;">
-          <span style="white-space: nowrap;">Qtd. parcelas:</span> <span id="fin-parcelas" class="fill"
-            style="flex: 1; margin-right: 2mm;" contenteditable="true"></span>
-        </div>
-        <div style="display: flex; align-items: center; flex: 1.1;">
-          <span style="white-space: nowrap;">Valor das parcelas, R$:</span> <span id="fin-valor" class="fill" style="flex: 1;"
-            contenteditable="true"></span>
+        <div style="display: flex; align-items: center; flex: 1;">
+          <span>Nome do Banco:</span> <span id="fin-banco" class="fill" style="flex: 1;" contenteditable="true"></span>
         </div>
       </div>
-      <div class="line-row" style="justify-content: space-between;">
+      <div class="line-row" style="justify-content: space-between; margin-top: 5px;">
+        <div style="display: flex; align-items: center; flex: 1.5; margin-right: 4mm;">
+          <span style="white-space: nowrap;">Valor financiado R$:</span> <span id="fin-valor-financiado" class="fill"
+            style="flex: 1; text-align: center;" contenteditable="true" onkeypress="if(this.innerText.length >= 8) return false;"></span>
+        </div>
+        <div style="display: flex; align-items: center; flex: 1; margin-right: 4mm;">
+          <span style="white-space: nowrap;">Qtd parcelas:</span> <span id="fin-parcelas" class="fill"
+            style="flex: 1; text-align: center;" contenteditable="true" onkeypress="if(this.innerText.length >= 2) return false; if(event.key < '0' || event.key > '9') return false;"></span>
+        </div>
+        <div style="display: flex; align-items: center; flex: 1.5;">
+          <span style="white-space: nowrap;">Valor parcelas R$:</span> <span id="fin-valor" class="fill" style="flex: 1; text-align: center;"
+            contenteditable="true" onkeypress="if(this.innerText.length >= 8) return false;"></span>
+        </div>
+      </div>
+      <div class="line-row" style="justify-content: space-between; margin-top: 5px;">
         <div style="width: 55mm; display: flex; align-items: center;">
           <span style="white-space: nowrap;">Veículo usado:</span>
           <span class="opt" style="margin-left: 1.5mm; margin-right: 0;"><span>(<span class="mod-fill"
@@ -594,7 +598,7 @@
                 contenteditable="true"></span>)</span> Não</span>
         </div>
       </div>
-      <div class="line-row">
+      <div class="line-row" style="margin-top: 5px;">
         <span>Outros:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
       </div>
     </div>
@@ -846,7 +850,7 @@
       const textFields = document.querySelectorAll('.fill[contenteditable="true"]:not([data-opcional="true"])');
       textFields.forEach(field => {
         // Ignora campos de financiamento se "Não" estiver marcado
-        if (financiamentoNao && (field.id === 'fin-banco' || field.id === 'fin-parcelas' || field.id === 'fin-valor')) return;
+        if (financiamentoNao && (field.id === 'fin-banco' || field.id === 'fin-parcelas' || field.id === 'fin-valor' || field.id === 'fin-valor-financiado')) return;
         
         // Ignora campos de veículo se "Não" estiver marcado
         if (veiculoNao && (field.id === 'veic-placa' || field.id === 'veic-valor')) return;
