@@ -344,12 +344,17 @@
     color: rgba(0, 0, 0, 0.4);
     font-style: italic;
   }
+  
+  .erro-validacao {
+    background-color: #ffcccc !important;
+    border-color: red !important;
+  }
 </style>
 </head>
 
 <body>
   <div class="print-bar">
-    <button onclick="window.print()" style="padding: 8px 16px; cursor: pointer;">Imprimir Contrato</button>
+    <button onclick="validarEImprimir()" style="padding: 8px 16px; cursor: pointer;">Imprimir Contrato</button>
   </div>
 
   <section class="page">
@@ -394,7 +399,7 @@
     </div>
 
     <div class="line-row"
-      style="margin-top: 2mm; margin-bottom: 2mm; align-items: center; font-size: 12px; white-space: nowrap; justify-content: space-between; width: 100%;">
+      style="margin-top: 2mm; margin-bottom: calc(2mm + 4px); align-items: center; font-size: 12px; white-space: nowrap; justify-content: space-between; width: 100%;">
       <span class="b" style="margin-right: 1mm;">POSSUI ISENÇÃO DE:</span>
 
       <div style="display: inline-flex; align-items: center; gap: 1mm;">
@@ -433,7 +438,7 @@
       presente pedido de faturamento do(s) veículo(s) abaixo relacionados:
     </div>
 
-    <div class="line-row" style="margin-top: 1.5mm; justify-content: space-between;">
+    <div class="line-row" style="margin-top: calc(1.5mm + 4px); justify-content: space-between;">
       <div style="flex: 1; display: flex;">
         <span>Vendedor:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
       </div>
@@ -528,7 +533,7 @@
       <div class="line-row">
         <span>RG:</span> <span class="fill" style="width: 60mm;" contenteditable="true"></span>
         <span style="width: 10mm;"></span>
-        <span>Contato na Empresa:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+        <span>Contato na Empresa:</span> <span id="contato-empresa" class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
       </div>
       <div class="line-row">
         <span>Telefone:</span> <span class="fill" style="width: 80mm;" contenteditable="true"></span>
@@ -564,9 +569,12 @@
         </div>
       </div>
       <div class="line-row" style="justify-content: space-between;">
-        <div style="width: 55mm; display: flex;">
-          <span style="white-space: nowrap;">Veiculo usado:</span> <span class="fill"
-            style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+        <div style="width: 55mm; display: flex; align-items: center;">
+          <span style="white-space: nowrap;">Veículo usado:</span>
+          <span class="opt" style="margin-left: 1.5mm; margin-right: 0;"><span>(<span class="mod-fill"
+                style="min-width: 3mm;" contenteditable="true"></span>)</span> Sim</span>
+          <span class="opt" style="margin-left: 1.5mm; margin-right: 0;"><span>(<span class="mod-fill"
+                style="min-width: 3mm;" contenteditable="true"></span>)</span> Não</span>
         </div>
         <div style="width: 35mm; display: flex;">
           <span>Placa:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
@@ -584,22 +592,22 @@
         </div>
       </div>
       <div class="line-row">
-        <span>Outros:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+        <span>Outros:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
       </div>
     </div>
 
     <div class="line-row" style="margin-top: 3.5mm; align-items: center;">
       <span class="b" style="margin-right: 2mm;">Observações:</span>
-      <span class="fill" style="flex: 1;" contenteditable="true"></span>
+      <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
     </div>
-    <div class="note-text b" style="margin-top: 5mm; margin-bottom: 4.5mm;">
+    <div class="note-text b" style="margin-top: 5mm; margin-bottom: 4.5mm; font-size: 13px;">
       É parte integrante deste contrato a ficha técnica do veículo contratado (Linha de Produtos Fiat), contendo os
       itens específicos que o compõe, ratificando os seus componentes básicos de série, os opcionais adquiridos bem como
       a sua cor, cujos itens deverão estar rubricados pelo comprador, indicando de forma irretratável as características
       do veículo.
     </div>
     <div class="note-text b">
-      Informações Legais em Cumprimento à Lei 13.111 de 25 de março de 2015
+      Informações Legais em Cumprimento à Lei 13.111 de 25 de março de 2015.
     </div>
     <div class="note-text">
       Declaro que previamente a aquisição do veículo supra referido, recebi clara e satisfatoriamente as informações
@@ -672,7 +680,8 @@
           Fiat, alterações em suas características, considerando as atualizações implementadas nas versões de cada
           modelo (itens de série e conjunto de opcionais), quando de seu faturamento ou produção, sem prévio aviso.
           <span class="b u">Ademais, tais alterações poderão influenciar no preço final do veículo, ficando o
-            Contratante, desde já, totalmente ciente e de acordo com as eventuais alterações.</span></li>
+            Contratante, desde já, totalmente ciente e de acordo com as eventuais alterações.</span>
+        </li>
         <li>O desconto concedido advém da quantidade, categoria e características do veículo adquirido, só podendo ser
           aplicado nessas exatas condições. Caso o faturamento ocorra em uma quantidade menor ou com características
           distintas do requerido, por solicitação do Contratante, poderá haver uma redução no percentual do desconto,
@@ -808,6 +817,79 @@
     </div>
     <div class="watermark-footer">Central de Apoio</div>
   </section>
-</body>
 
+  <script>
+    function validarEImprimir() {
+      // Limpa alertas anteriores
+      document.querySelectorAll('.erro-validacao').forEach(el => el.classList.remove('erro-validacao'));
+
+      let valido = true;
+      let primeiraFalha = null;
+
+      function setErro(el) {
+        el.classList.add('erro-validacao');
+        valido = false;
+        if (!primeiraFalha) primeiraFalha = el;
+      }
+
+      // Valida os campos de texto padrão, ignorando os marcados como opcionais
+      const textFields = document.querySelectorAll('.fill[contenteditable="true"]:not([data-opcional="true"])');
+      textFields.forEach(field => {
+        if (field.innerText.trim() === '') {
+          setErro(field);
+        }
+      });
+
+      // Valida as opções de marcação (Sim/Não, Modalidade, etc.)
+      const modFills = document.querySelectorAll('.mod-fill[contenteditable="true"]');
+      
+      // Índices dos grupos (garante que apenas uma opção do grupo precisa estar preenchida)
+      const grupos = [
+        [0, 1, 2, 3, 4], // Modalidade do cliente
+        [5, 6], // ICMS
+        [7, 8], // IPI
+        [9, 10], // Alvará
+        [11, 12, 13, 14], // Concessionária de Entrega
+        [15, 16], // Financiamento
+        [17, 18], // Veículo usado
+        [19, 20]  // Quitação
+      ];
+
+      grupos.forEach(grupoIndices => {
+        let preenchido = false;
+        let els = [];
+        grupoIndices.forEach(idx => {
+          const el = modFills[idx];
+          if (el) {
+            els.push(el);
+            if (el.innerText.trim() !== '') {
+              preenchido = true;
+            }
+          }
+        });
+        
+        // Se nenhuma das opções do grupo tiver algo preenchido (um "X" por exemplo)
+        if (!preenchido && els.length > 0) {
+          els.forEach(el => setErro(el));
+        }
+      });
+
+      // Validação específica: Contato na Empresa só é obrigatório se Pessoa Jurídica for marcada
+      const isPessoaJuridica = modFills[0] && modFills[0].innerText.trim() !== '';
+      const contatoEmpresa = document.getElementById('contato-empresa');
+      if (isPessoaJuridica && contatoEmpresa && contatoEmpresa.innerText.trim() === '') {
+        setErro(contatoEmpresa);
+      }
+
+      if (valido) {
+        window.print();
+      } else {
+        alert("Por favor, preencha todos os campos obrigatórios (destacados em vermelho) antes de gerar o contrato.");
+        if (primeiraFalha) {
+          primeiraFalha.focus();
+        }
+      }
+    }
+  </script>
+</body>
 </html>
