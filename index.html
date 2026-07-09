@@ -557,14 +557,14 @@
                 style="min-width: 3mm;" contenteditable="true"></span>)</span> Não</span>
         </div>
         <div style="width: 40mm; display: flex; align-items: center;">
-          <span>Banco:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+          <span>Banco:</span> <span id="fin-banco" class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
         </div>
         <div style="width: 48mm; display: flex; align-items: center;">
-          <span style="white-space: nowrap;">Quantidade de parcelas:</span> <span class="fill"
+          <span style="white-space: nowrap;">Quantidade de parcelas:</span> <span id="fin-parcelas" class="fill"
             style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
         </div>
         <div style="width: 55mm; display: flex; align-items: center;">
-          <span style="white-space: nowrap;">Valor das parcelas, R$:</span> <span class="fill" style="flex: 1;"
+          <span style="white-space: nowrap;">Valor das parcelas, R$:</span> <span id="fin-valor" class="fill" style="flex: 1;"
             contenteditable="true"></span>
         </div>
       </div>
@@ -577,10 +577,10 @@
                 style="min-width: 3mm;" contenteditable="true"></span>)</span> Não</span>
         </div>
         <div style="width: 35mm; display: flex;">
-          <span>Placa:</span> <span class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+          <span>Placa:</span> <span id="veic-placa" class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
         </div>
         <div style="width: 45mm; display: flex;">
-          <span>Valor utilizado:</span> <span class="fill" style="flex: 1; margin-right: 4mm;"
+          <span>Valor utilizado:</span> <span id="veic-valor" class="fill" style="flex: 1; margin-right: 4mm;"
             contenteditable="true"></span>
         </div>
         <div style="width: 45mm; display: flex;">
@@ -790,10 +790,10 @@
             <div style="text-align: center; margin-top: 2mm;">Assinatura</div>
             <div style="margin-top: 4mm;">
               <div class="line-row">
-                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
               </div>
               <div class="line-row" style="margin-top: 2mm;">
-                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
               </div>
             </div>
           </div>
@@ -805,10 +805,10 @@
             <div style="text-align: center; margin-top: 2mm;">Assinatura</div>
             <div style="margin-top: 4mm;">
               <div class="line-row">
-                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
               </div>
               <div class="line-row" style="margin-top: 2mm;">
-                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
               </div>
             </div>
           </div>
@@ -832,16 +832,28 @@
         if (!primeiraFalha) primeiraFalha = el;
       }
 
+      // Declara modFills primeiro
+      const modFills = document.querySelectorAll('.mod-fill[contenteditable="true"]');
+
+      // Verifica os "Nãos"
+      const financiamentoNao = modFills[16] && modFills[16].innerText.trim() !== '';
+      const veiculoNao = modFills[18] && modFills[18].innerText.trim() !== '';
+
       // Valida os campos de texto padrão, ignorando os marcados como opcionais
       const textFields = document.querySelectorAll('.fill[contenteditable="true"]:not([data-opcional="true"])');
       textFields.forEach(field => {
+        // Ignora campos de financiamento se "Não" estiver marcado
+        if (financiamentoNao && (field.id === 'fin-banco' || field.id === 'fin-parcelas' || field.id === 'fin-valor')) return;
+        
+        // Ignora campos de veículo se "Não" estiver marcado
+        if (veiculoNao && (field.id === 'veic-placa' || field.id === 'veic-valor')) return;
+
         if (field.innerText.trim() === '') {
           setErro(field);
         }
       });
 
       // Valida as opções de marcação (Sim/Não, Modalidade, etc.)
-      const modFills = document.querySelectorAll('.mod-fill[contenteditable="true"]');
       
       // Índices dos grupos (garante que apenas uma opção do grupo precisa estar preenchida)
       const grupos = [
@@ -856,6 +868,9 @@
       ];
 
       grupos.forEach(grupoIndices => {
+        // Se for o grupo Quitação [19, 20] e veiculoNao for true, ignora
+        if (grupoIndices[0] === 19 && veiculoNao) return;
+
         let preenchido = false;
         let els = [];
         grupoIndices.forEach(idx => {
