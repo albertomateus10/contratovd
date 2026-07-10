@@ -179,6 +179,10 @@
     border-bottom: 1px solid blue !important;
   }
 
+  .email-field {
+    text-transform: lowercase !important;
+  }
+
   .note-text {
     font-size: 12px;
     /* Mantido em 12 conforme solicitação global de tamanho 12 */
@@ -345,7 +349,7 @@
     color: rgba(0, 0, 0, 0.4);
     font-style: italic;
   }
-  
+
   .erro-validacao {
     background-color: #ffcccc !important;
     border-color: red !important;
@@ -356,23 +360,26 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0, 0, 0, 0.55);
     z-index: 9999;
     align-items: center;
     justify-content: center;
   }
+
   #modal-financeiro-overlay.ativo {
     display: flex;
   }
+
   #modal-financeiro {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
     width: 480px;
     max-width: 95vw;
     font-family: 'Trebuchet MS', Arial, sans-serif;
     overflow: hidden;
   }
+
   #modal-financeiro .mf-header {
     background: #b00000;
     color: #fff;
@@ -383,17 +390,20 @@
     align-items: center;
     gap: 8px;
   }
+
   #modal-financeiro .mf-body {
     padding: 20px 24px 8px 24px;
     font-size: 13px;
     color: #222;
   }
+
   #modal-financeiro .mf-subtitulo {
     color: #555;
     font-size: 12px;
     margin-bottom: 16px;
     line-height: 1.4;
   }
+
   #modal-financeiro .mf-linha {
     display: flex;
     justify-content: space-between;
@@ -403,38 +413,46 @@
     margin-bottom: 4px;
     font-size: 13px;
   }
+
   #modal-financeiro .mf-linha.destaque {
     background: #f8f8f8;
   }
+
   #modal-financeiro .mf-linha .mf-label {
     display: flex;
     align-items: center;
     gap: 6px;
     color: #444;
   }
+
   #modal-financeiro .mf-linha .mf-valor {
     font-weight: bold;
     color: #111;
     font-size: 13px;
   }
+
   #modal-financeiro .mf-divisor {
     border: none;
     border-top: 2px solid #ddd;
     margin: 10px 0;
   }
+
   #modal-financeiro .mf-divisor-duplo {
     border: none;
     border-top: 3px double #999;
     margin: 6px 0;
   }
+
   #modal-financeiro .mf-linha.soma {
     background: #f0f0f0;
     font-size: 14px;
   }
+
   #modal-financeiro .mf-linha.soma .mf-label {
     font-weight: bold;
     color: #222;
   }
+
   #modal-financeiro .mf-linha.diferenca {
     margin-top: 6px;
     border-radius: 8px;
@@ -442,24 +460,29 @@
     font-size: 14px;
     font-weight: bold;
   }
+
   #modal-financeiro .mf-linha.diferenca.falta {
     background: #ffe5e5;
     border: 2px solid #e00;
     color: #c00;
   }
+
   #modal-financeiro .mf-linha.diferenca.sobra {
     background: #fff8e1;
     border: 2px solid #e6a800;
     color: #a07000;
   }
+
   #modal-financeiro .mf-linha.diferenca .mf-valor {
     font-size: 15px;
     color: inherit;
   }
+
   #modal-financeiro .mf-footer {
     padding: 14px 24px 18px 24px;
     text-align: right;
   }
+
   #modal-financeiro .mf-btn-ok {
     background: #b00000;
     color: #fff;
@@ -472,11 +495,15 @@
     letter-spacing: 0.5px;
     transition: background 0.2s;
   }
+
   #modal-financeiro .mf-btn-ok:hover {
     background: #8a0000;
   }
+
   @media print {
-    #modal-financeiro-overlay { display: none !important; }
+    #modal-financeiro-overlay {
+      display: none !important;
+    }
   }
 </style>
 </head>
@@ -620,7 +647,7 @@
       </div>
     </div>
     <div class="line-row" style="margin-bottom: 2mm;">
-      <span>E-mail:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+      <span>E-mail:</span> <span class="fill email-field" style="flex: 1;" contenteditable="true"></span>
     </div>
 
     <div class="section-title"
@@ -656,12 +683,12 @@
       </div>
       <div class="line-row" style="margin-top: 4mm; justify-content: space-between; font-size: 14px;">
         <div style="flex: 1; display: flex;">
-          <span class="b">Valor Unitário do Veículo, R$:</span> <span id="veiculo-valor-unitario" class="fill" style="flex: 1; margin-right: 4mm;"
-            contenteditable="true" onblur="fmtMoeda(this)"></span>
+          <span class="b">Valor Unitário do Veículo, R$:</span> <span id="veiculo-valor-unitario" class="fill"
+            style="flex: 1; margin-right: 4mm;" contenteditable="true" onblur="fmtMoeda(this)"></span>
         </div>
         <div style="flex: 1; display: flex;">
-          <span class="b">Valor Total do Contrato, R$:</span> <span id="contrato-valor-total" class="fill" style="flex: 1;"
-            contenteditable="true" onblur="fmtMoeda(this)"></span>
+          <span class="b">Valor Total do Contrato, R$:</span> <span id="contrato-valor-total" class="fill"
+            style="flex: 1;" contenteditable="true" onblur="fmtMoeda(this)"></span>
         </div>
       </div>
     </div>
@@ -692,7 +719,7 @@
           <span>Estado: RS</span>
         </div>
         <div style="flex: 1; display: flex;">
-          <span>E-mail:</span> <span class="fill" style="flex: 1;" contenteditable="true"></span>
+          <span>E-mail:</span> <span class="fill email-field" style="flex: 1;" contenteditable="true"></span>
         </div>
       </div>
       <div class="line-row">
@@ -703,7 +730,8 @@
       <div class="line-row">
         <span>RG:</span> <span class="fill" style="width: 60mm;" contenteditable="true"></span>
         <span style="width: 10mm;"></span>
-        <span>Contato na Empresa:</span> <span id="contato-empresa" class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
+        <span>Contato na Empresa:</span> <span id="contato-empresa" class="fill" style="flex: 1;" contenteditable="true"
+          data-opcional="true"></span>
       </div>
       <div class="line-row">
         <span>Telefone:</span> <span class="fill" style="width: 80mm;" contenteditable="true"></span>
@@ -737,11 +765,12 @@
         </div>
         <div style="display: flex; align-items: center; flex: 1; margin-right: 4mm;">
           <span style="white-space: nowrap;">Qtd parcelas:</span> <span id="fin-parcelas" class="fill"
-            style="flex: 1; text-align: center;" contenteditable="true" onkeypress="if(this.innerText.length >= 2) return false; if(event.key < '0' || event.key > '9') return false;"></span>
+            style="flex: 1; text-align: center;" contenteditable="true"
+            onkeypress="if(this.innerText.length >= 2) return false; if(event.key < '0' || event.key > '9') return false;"></span>
         </div>
         <div style="display: flex; align-items: center; flex: 1.5;">
-          <span style="white-space: nowrap;">Valor parcelas R$:</span> <span id="fin-valor" class="fill" style="flex: 1; text-align: center;"
-            contenteditable="true" onblur="fmtMoeda(this)"></span>
+          <span style="white-space: nowrap;">Valor parcelas R$:</span> <span id="fin-valor" class="fill"
+            style="flex: 1; text-align: center;" contenteditable="true" onblur="fmtMoeda(this)"></span>
         </div>
       </div>
       <div class="line-row" style="justify-content: space-between; margin-top: 5px;">
@@ -753,7 +782,8 @@
                 style="min-width: 3mm;" contenteditable="true"></span>)</span> Não</span>
         </div>
         <div style="width: 35mm; display: flex;">
-          <span>Placa:</span> <span id="veic-placa" class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true"></span>
+          <span>Placa:</span> <span id="veic-placa" class="fill" style="flex: 1; margin-right: 4mm;"
+            contenteditable="true"></span>
         </div>
         <div style="width: 45mm; display: flex;">
           <span>Valor utilizado:</span> <span id="veic-valor" class="fill" style="flex: 1; margin-right: 4mm;"
@@ -966,10 +996,12 @@
             <div style="text-align: center; margin-top: 2mm;">Assinatura</div>
             <div style="margin-top: 4mm;">
               <div class="line-row">
-                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
+                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true"
+                  data-opcional="true"></span>
               </div>
               <div class="line-row" style="margin-top: 2mm;">
-                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
+                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true"
+                  data-opcional="true"></span>
               </div>
             </div>
           </div>
@@ -981,10 +1013,12 @@
             <div style="text-align: center; margin-top: 2mm;">Assinatura</div>
             <div style="margin-top: 4mm;">
               <div class="line-row">
-                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
+                <span>Nome:</span> <span class="fill" style="flex: 1;" contenteditable="true"
+                  data-opcional="true"></span>
               </div>
               <div class="line-row" style="margin-top: 2mm;">
-                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true" data-opcional="true"></span>
+                <span>CPF:</span> <span class="fill" style="flex: 1;" contenteditable="true"
+                  data-opcional="true"></span>
               </div>
             </div>
           </div>
@@ -1014,12 +1048,12 @@
 
     function showModalFinanceiro(vUnit, vFinanc, vUsado, vDep, vSoma, tipo, vDif) {
       const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-      document.getElementById('mf-vl-unitario').textContent  = fmt(vUnit);
-      document.getElementById('mf-vl-financ').textContent    = fmt(vFinanc);
-      document.getElementById('mf-vl-usado').textContent     = fmt(vUsado);
-      document.getElementById('mf-vl-deposito').textContent  = fmt(vDep);
-      document.getElementById('mf-vl-soma').textContent      = fmt(vSoma);
-      document.getElementById('mf-vl-dif').textContent       = fmt(vDif);
+      document.getElementById('mf-vl-unitario').textContent = fmt(vUnit);
+      document.getElementById('mf-vl-financ').textContent = fmt(vFinanc);
+      document.getElementById('mf-vl-usado').textContent = fmt(vUsado);
+      document.getElementById('mf-vl-deposito').textContent = fmt(vDep);
+      document.getElementById('mf-vl-soma').textContent = fmt(vSoma);
+      document.getElementById('mf-vl-dif').textContent = fmt(vDif);
 
       const linhaDif = document.getElementById('mf-linha-dif');
       const labelDif = document.getElementById('mf-dif-label');
@@ -1060,7 +1094,7 @@
       textFields.forEach(field => {
         // Ignora campos de financiamento se "Não" estiver marcado
         if (financiamentoNao && (field.id === 'fin-banco' || field.id === 'fin-parcelas' || field.id === 'fin-valor' || field.id === 'fin-valor-financiado')) return;
-        
+
         // Ignora campos de veículo se "Não" estiver marcado
         if (veiculoNao && (field.id === 'veic-placa' || field.id === 'veic-valor')) return;
 
@@ -1070,7 +1104,7 @@
       });
 
       // Valida as opções de marcação (Sim/Não, Modalidade, etc.)
-      
+
       // Índices dos grupos (garante que apenas uma opção do grupo precisa estar preenchida)
       const grupos = [
         [0, 1, 2, 3, 4], // Modalidade do cliente
@@ -1098,7 +1132,7 @@
             }
           }
         });
-        
+
         // Se nenhuma das opções do grupo tiver algo preenchido (um "X" por exemplo)
         if (!preenchido && els.length > 0) {
           els.forEach(el => setErro(el));
@@ -1123,15 +1157,15 @@
         return isNaN(num) ? 0 : num;
       }
 
-      const elValorUnitario  = document.getElementById('contrato-valor-total');
-      const elFinanciamento  = document.getElementById('fin-valor-financiado');
-      const elVeicUsado      = document.getElementById('veic-valor');
-      const elDeposito       = document.getElementById('deposito-valor');
+      const elValorUnitario = document.getElementById('contrato-valor-total');
+      const elFinanciamento = document.getElementById('fin-valor-financiado');
+      const elVeicUsado = document.getElementById('veic-valor');
+      const elDeposito = document.getElementById('deposito-valor');
 
-      const valorUnitario  = parseMoeda(elValorUnitario  ? elValorUnitario.innerText  : '');
-      const valorFinanc    = parseMoeda(elFinanciamento  ? elFinanciamento.innerText  : '');
-      const valorVeicUsado = parseMoeda(elVeicUsado      ? elVeicUsado.innerText      : '');
-      const valorDeposito  = parseMoeda(elDeposito       ? elDeposito.innerText       : '');
+      const valorUnitario = parseMoeda(elValorUnitario ? elValorUnitario.innerText : '');
+      const valorFinanc = parseMoeda(elFinanciamento ? elFinanciamento.innerText : '');
+      const valorVeicUsado = parseMoeda(elVeicUsado ? elVeicUsado.innerText : '');
+      const valorDeposito = parseMoeda(elDeposito ? elDeposito.innerText : '');
 
       // Só valida se o valor unitário foi preenchido
       if (valorUnitario > 0) {
@@ -1140,14 +1174,14 @@
         const diferenca = Math.abs(somaFormasPagamento - valorUnitario);
         if (diferenca > 0.01) {
           // Destaca todos os campos financeiros envolvidos
-          if (elValorUnitario)  setErro(elValorUnitario);
+          if (elValorUnitario) setErro(elValorUnitario);
           if (!financiamentoNao && elFinanciamento) setErro(elFinanciamento);
-          if (!veiculoNao      && elVeicUsado)      setErro(elVeicUsado);
-          if (elDeposito)       setErro(elDeposito);
+          if (!veiculoNao && elVeicUsado) setErro(elVeicUsado);
+          if (elDeposito) setErro(elDeposito);
           valido = false;
 
-          const tipo   = somaFormasPagamento < valorUnitario ? 'falta' : 'sobra';
-          const vDif   = somaFormasPagamento < valorUnitario
+          const tipo = somaFormasPagamento < valorUnitario ? 'falta' : 'sobra';
+          const vDif = somaFormasPagamento < valorUnitario
             ? valorUnitario - somaFormasPagamento
             : somaFormasPagamento - valorUnitario;
 
@@ -1165,6 +1199,35 @@
         }
       }
     }
+
+    // Forçar minúsculas nos campos de e-mail
+    document.querySelectorAll('.email-field').forEach(function (el) {
+      el.addEventListener('input', function () {
+        var sel = window.getSelection();
+        var range = sel.getRangeAt(0);
+        var offset = range.startOffset;
+        var text = el.innerText;
+        var lower = text.toLowerCase();
+        if (text !== lower) {
+          el.innerText = lower;
+          // Reposicionar o cursor
+          var newRange = document.createRange();
+          var node = el.firstChild;
+          if (node) {
+            newRange.setStart(node, Math.min(offset, node.length));
+            newRange.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(newRange);
+          }
+        }
+      });
+      el.addEventListener('paste', function (e) {
+        e.preventDefault();
+        var text = (e.clipboardData || window.clipboardData).getData('text');
+        document.execCommand('insertText', false, text.toLowerCase());
+      });
+    });
   </script>
 </body>
+
 </html>
