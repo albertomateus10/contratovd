@@ -533,6 +533,10 @@
           <span class="mf-label">&#128176; Dep&#243;sito / Transfer&#234;ncia</span>
           <span class="mf-valor" id="mf-vl-deposito"></span>
         </div>
+        <div class="mf-linha">
+          <span class="mf-label">&#128181; Entrada</span>
+          <span class="mf-valor" id="mf-vl-entrada"></span>
+        </div>
         <hr class="mf-divisor">
         <div class="mf-linha soma">
           <span class="mf-label">&Sigma; Soma dos valores</span>
@@ -742,9 +746,17 @@
       style="font-size: 12px; font-weight: bold; color: #b00000; text-decoration: underline; text-align: center; margin: 5mm 0 2mm 0;">
       III - Forma de Pagamento</div>
     <div style="font-size: 12px; margin-bottom: 2mm;">
-      <div class="line-row">
-        <span>Depósito/Transferência bancária, R$:</span> <span id="deposito-valor" class="fill" style="flex: 1;"
-          contenteditable="true" data-opcional="true" onblur="fmtMoeda(this)"></span>
+      <div class="line-row" style="justify-content: space-between;">
+        <div style="display: flex; flex: 1.2; align-items: center; white-space: nowrap;">
+          <span>Depósito/Transferência bancária, R$:</span>
+          <span id="deposito-valor" class="fill" style="flex: 1; margin-right: 4mm;" contenteditable="true" data-opcional="true" onblur="fmtMoeda(this)"></span>
+        </div>
+        <div style="display: flex; flex: 1; align-items: center; white-space: nowrap;">
+          <span>Entrada R$:</span>
+          <span id="entrada-valor" class="fill" style="flex: 1; margin-right: 2mm;" contenteditable="true" onblur="fmtMoeda(this)"></span>
+          <span class="opt" style="margin-left: 1mm; margin-right: 0;"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Sim</span>
+          <span class="opt" style="margin-left: 1.5mm; margin-right: 0;"><span>(<span class="mod-fill" style="min-width: 3mm;" contenteditable="true"></span>)</span> Não</span>
+        </div>
       </div>
       <div class="line-row" style="justify-content: flex-start; margin-top: 5px;">
         <div style="display: flex; align-items: center; margin-right: 5mm;">
@@ -764,12 +776,12 @@
             style="flex: 1; text-align: center;" contenteditable="true" onblur="fmtMoeda(this)"></span>
         </div>
         <div style="display: flex; align-items: center; flex: 1; margin-right: 4mm;">
-          <span style="white-space: nowrap;">Qtd parcelas:</span> <span id="fin-parcelas" class="fill"
+          <span style="white-space: nowrap;">Quantidade de parcelas:</span> <span id="fin-parcelas" class="fill"
             style="flex: 1; text-align: center;" contenteditable="true"
             onkeypress="if(this.innerText.length >= 2) return false; if(event.key < '0' || event.key > '9') return false;"></span>
         </div>
         <div style="display: flex; align-items: center; flex: 1.5;">
-          <span style="white-space: nowrap;">Valor parcelas R$:</span> <span id="fin-valor" class="fill"
+          <span style="white-space: nowrap;">Valor das parcelas R$:</span> <span id="fin-valor" class="fill"
             style="flex: 1; text-align: center;" contenteditable="true" onblur="fmtMoeda(this)"></span>
         </div>
       </div>
@@ -786,7 +798,7 @@
             contenteditable="true"></span>
         </div>
         <div style="width: 45mm; display: flex;">
-          <span>Valor utilizado:</span> <span id="veic-valor" class="fill" style="flex: 1; margin-right: 4mm;"
+          <span>Valor utilizado, R$:</span> <span id="veic-valor" class="fill" style="flex: 1; margin-right: 4mm;"
             contenteditable="true" onblur="fmtMoeda(this)"></span>
         </div>
         <div style="width: 45mm; display: flex;">
@@ -1046,12 +1058,13 @@
       document.getElementById('modal-financeiro-overlay').classList.remove('ativo');
     }
 
-    function showModalFinanceiro(vUnit, vFinanc, vUsado, vDep, vSoma, tipo, vDif) {
+    function showModalFinanceiro(vUnit, vFinanc, vUsado, vDep, vEntrada, vSoma, tipo, vDif) {
       const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       document.getElementById('mf-vl-unitario').textContent = fmt(vUnit);
       document.getElementById('mf-vl-financ').textContent = fmt(vFinanc);
       document.getElementById('mf-vl-usado').textContent = fmt(vUsado);
       document.getElementById('mf-vl-deposito').textContent = fmt(vDep);
+      document.getElementById('mf-vl-entrada').textContent = fmt(vEntrada);
       document.getElementById('mf-vl-soma').textContent = fmt(vSoma);
       document.getElementById('mf-vl-dif').textContent = fmt(vDif);
 
@@ -1086,12 +1099,16 @@
       const modFills = document.querySelectorAll('.mod-fill[contenteditable="true"]');
 
       // Verifica os "Nãos"
-      const financiamentoNao = modFills[16] && modFills[16].innerText.trim() !== '';
-      const veiculoNao = modFills[18] && modFills[18].innerText.trim() !== '';
+      const entradaNao = modFills[16] && modFills[16].innerText.trim() !== '';
+      const financiamentoNao = modFills[18] && modFills[18].innerText.trim() !== '';
+      const veiculoNao = modFills[20] && modFills[20].innerText.trim() !== '';
 
       // Valida os campos de texto padrão, ignorando os marcados como opcionais
       const textFields = document.querySelectorAll('.fill[contenteditable="true"]:not([data-opcional="true"])');
       textFields.forEach(field => {
+        // Ignora campo de entrada se "Não" estiver marcado
+        if (entradaNao && field.id === 'entrada-valor') return;
+
         // Ignora campos de financiamento se "Não" estiver marcado
         if (financiamentoNao && (field.id === 'fin-banco' || field.id === 'fin-parcelas' || field.id === 'fin-valor' || field.id === 'fin-valor-financiado')) return;
 
@@ -1112,14 +1129,15 @@
         [7, 8], // IPI
         [9, 10], // Alvará
         [11, 12, 13, 14], // Concessionária de Entrega
-        [15, 16], // Financiamento
-        [17, 18], // Veículo usado
-        [19, 20]  // Quitação
+        [15, 16], // Entrada R$
+        [17, 18], // Financiamento
+        [19, 20], // Veículo usado
+        [21, 22]  // Quitação
       ];
 
       grupos.forEach(grupoIndices => {
-        // Se for o grupo Quitação [19, 20] e veiculoNao for true, ignora
-        if (grupoIndices[0] === 19 && veiculoNao) return;
+        // Se for o grupo Quitação [21, 22] e veiculoNao for true, ignora
+        if (grupoIndices[0] === 21 && veiculoNao) return;
 
         let preenchido = false;
         let els = [];
@@ -1147,7 +1165,7 @@
       }
 
       // =====================================================================
-      // VALIDAÇÃO FINANCEIRA: Financiamento + Carro Usado + Depósito = Valor Unitário
+      // VALIDAÇÃO FINANCEIRA: Financiamento + Carro Usado + Depósito + Entrada = Valor Unitário
       // =====================================================================
       function parseMoeda(texto) {
         if (!texto || texto.trim() === '') return 0;
@@ -1161,15 +1179,17 @@
       const elFinanciamento = document.getElementById('fin-valor-financiado');
       const elVeicUsado = document.getElementById('veic-valor');
       const elDeposito = document.getElementById('deposito-valor');
+      const elEntrada = document.getElementById('entrada-valor');
 
       const valorUnitario = parseMoeda(elValorUnitario ? elValorUnitario.innerText : '');
       const valorFinanc = parseMoeda(elFinanciamento ? elFinanciamento.innerText : '');
       const valorVeicUsado = parseMoeda(elVeicUsado ? elVeicUsado.innerText : '');
       const valorDeposito = parseMoeda(elDeposito ? elDeposito.innerText : '');
+      const valorEntrada = parseMoeda(elEntrada ? elEntrada.innerText : '');
 
       // Só valida se o valor unitário foi preenchido
       if (valorUnitario > 0) {
-        const somaFormasPagamento = valorFinanc + valorVeicUsado + valorDeposito;
+        const somaFormasPagamento = valorFinanc + valorVeicUsado + valorDeposito + valorEntrada;
         // Tolerância de R$ 0,01 para evitar problemas de arredondamento de ponto flutuante
         const diferenca = Math.abs(somaFormasPagamento - valorUnitario);
         if (diferenca > 0.01) {
@@ -1178,6 +1198,7 @@
           if (!financiamentoNao && elFinanciamento) setErro(elFinanciamento);
           if (!veiculoNao && elVeicUsado) setErro(elVeicUsado);
           if (elDeposito) setErro(elDeposito);
+          if (!entradaNao && elEntrada) setErro(elEntrada);
           valido = false;
 
           const tipo = somaFormasPagamento < valorUnitario ? 'falta' : 'sobra';
@@ -1185,7 +1206,7 @@
             ? valorUnitario - somaFormasPagamento
             : somaFormasPagamento - valorUnitario;
 
-          showModalFinanceiro(valorUnitario, valorFinanc, valorVeicUsado, valorDeposito, somaFormasPagamento, tipo, vDif);
+          showModalFinanceiro(valorUnitario, valorFinanc, valorVeicUsado, valorDeposito, valorEntrada, somaFormasPagamento, tipo, vDif);
           return;
         }
       }
