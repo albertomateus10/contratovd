@@ -569,9 +569,9 @@
     </div>
 
     <div style="text-align: right; font-size: 12px; margin-top: 4mm; margin-bottom: 6mm; padding-right: 2mm;">
-      <span class="b">Data: <span class="fill" style="width: 15mm; text-align: center;" contenteditable="true"></span>
-        de <span class="fill" style="width: 45mm; text-align: center;" contenteditable="true"></span> de <span
-          class="fill" style="width: 12mm; text-align: center;" contenteditable="true"></span>.</span>
+      <span class="b">Data: <span id="data-dia-cabecalho" class="fill" style="width: 15mm; text-align: center;" contenteditable="true"></span>
+        de <span id="data-mes-cabecalho" class="fill" style="width: 45mm; text-align: center;" contenteditable="true"></span> de <span
+          id="data-ano-cabecalho" class="fill" style="width: 12mm; text-align: center;" contenteditable="true"></span>.</span>
     </div>
 
     <div style="font-weight: bold; font-size: 12px; margin-top: 2mm; margin-bottom: 1mm;">MODALIDADE DO CLIENTE:</div>
@@ -840,8 +840,7 @@
     <div class="note-text">
       <span class="b">Informações legais em cumprimento à Lei 9.613, de 3 de março de 1998, e Resolução nº. 16 do COAF,
         DE 28 DE MARÇO DE 2007:</span><br>
-      Declaro que, na forma da Resolução nº. 16 do COAF, de 28 de março de 2007, <span class="fill" style="width: 15mm;"
-        contenteditable="true"></span><span class="b">Pessoa Politicamente Exposta</span> (PPE).
+      Declaro que, na forma da Resolução nº. 16 do COAF, de 28 de março de 2007, <span class="fill" style="width: 15mm;"></span><span class="b">Pessoa Politicamente Exposta</span> (PPE).
     </div>
 
     <div style="margin-top: 18mm; display: flex; justify-content: space-between; font-size: 12px; text-align: center;">
@@ -981,9 +980,9 @@
       </ol>
 
       <div class="p2-footer" style="margin-top: 25mm; font-size: 12px;">
-        Porto Alegre, <span class="fill-black" style="width: 15mm; text-align: center;" contenteditable="true"></span>
-        de <span class="fill-black" style="width: 45mm; text-align: center;" contenteditable="true"></span> de <span
-          class="fill-black" style="width: 12mm; text-align: center;" contenteditable="true"></span>.
+        Porto Alegre, <span id="data-dia-rodape" class="fill-black" style="width: 15mm; text-align: center;"></span>
+        de <span id="data-mes-rodape" class="fill-black" style="width: 45mm; text-align: center;"></span> de <span
+          id="data-ano-rodape" class="fill-black" style="width: 12mm; text-align: center;"></span>.
       </div>
 
       <div style="margin-top: 25mm; display: flex; justify-content: space-between; font-size: 12px;">
@@ -1120,6 +1119,19 @@
         }
       });
 
+      // Valida se o mês é um dos meses válidos
+      const elMes = document.getElementById('data-mes-cabecalho');
+      if (elMes) {
+        const mesTexto = elMes.innerText.trim().toLowerCase();
+        const mesesValidos = [
+          'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+          'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+        ];
+        if (mesTexto !== '' && !mesesValidos.includes(mesTexto)) {
+          setErro(elMes);
+        }
+      }
+
       // Valida as opções de marcação (Sim/Não, Modalidade, etc.)
 
       // Índices dos grupos (garante que apenas uma opção do grupo precisa estar preenchida)
@@ -1248,6 +1260,34 @@
         document.execCommand('insertText', false, text.toLowerCase());
       });
     });
+
+    // Sincronização automática da data da primeira página com a terceira página
+    const diaCabecalho = document.getElementById('data-dia-cabecalho');
+    const mesCabecalho = document.getElementById('data-mes-cabecalho');
+    const anoCabecalho = document.getElementById('data-ano-cabecalho');
+
+    const diaRodape = document.getElementById('data-dia-rodape');
+    const mesRodape = document.getElementById('data-mes-rodape');
+    const anoRodape = document.getElementById('data-ano-rodape');
+
+    function sincronizarDatas() {
+      if (diaCabecalho && diaRodape) diaRodape.innerText = diaCabecalho.innerText;
+      if (mesCabecalho && mesRodape) mesRodape.innerText = mesCabecalho.innerText;
+      if (anoCabecalho && anoRodape) anoRodape.innerText = anoCabecalho.innerText;
+    }
+
+    if (diaCabecalho && diaRodape) {
+      diaCabecalho.addEventListener('input', () => { diaRodape.innerText = diaCabecalho.innerText; });
+    }
+    if (mesCabecalho && mesRodape) {
+      mesCabecalho.addEventListener('input', () => { mesRodape.innerText = mesCabecalho.innerText; });
+    }
+    if (anoCabecalho && anoRodape) {
+      anoCabecalho.addEventListener('input', () => { anoRodape.innerText = anoCabecalho.innerText; });
+    }
+
+    // Sincronização inicial
+    sincronizarDatas();
   </script>
 </body>
 
